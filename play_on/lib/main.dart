@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:play_on/profile_screen.dart';
+import 'package:play_on/screens/profile_screen.dart';
 import 'package:play_on/welcome_screen.dart';
 
 
@@ -17,11 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        brightness: Brightness.dark,
-        hintColor: Colors.black
-      ),
-      initialRoute: WelcomeScreen.id,
+      initialRoute: ProfileScreen.id,
       routes: {
       //  ChatScreen.id:(context) => const ChatScreen(),
       //  LoginScreen.id:(context) => const LoginScreen(),
