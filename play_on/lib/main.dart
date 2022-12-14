@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:play_on/profile_screen.dart';
 import 'package:play_on/welcome_screen.dart';
 
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       //  LoginScreen.id:(context) => const LoginScreen(),
       //  RegistrationScreen.id:(context) => const RegistrationScreen(),
        WelcomeScreen.id:(context)=>const WelcomeScreen(),
+       ProfileScreen.id:(context) => ProfileScreen(),
       },
     );
   }
