@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:play_on/screens/edit_profile.dart';
 
 const email = "nikhilsoni2910@gmail.com";
 const phone = "90441539202"; 
@@ -21,7 +22,10 @@ class ProfileScreen extends StatelessWidget {
                 Icons.edit,
                 color: Colors.black,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => EditProfilePage()));
+              },
             ),
           ],
         ),
