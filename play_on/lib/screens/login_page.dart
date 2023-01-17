@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:play_on/screens/home_screen.dart';
+import 'package:play_on/screens/registration_page.dart';
 
 class LoginDemo extends StatefulWidget {
   static String id = "/login";
@@ -10,13 +12,13 @@ class LoginDemoState extends State<LoginDemo> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage("images/bgimage.jpg"), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: Text("Welcome Back!"),
+          title: const Text("Welcome Back!"),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -30,7 +32,7 @@ class LoginDemoState extends State<LoginDemo> {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
                   decoration: InputDecoration(
@@ -39,8 +41,8 @@ class LoginDemoState extends State<LoginDemo> {
                       hintText: 'Enter registered email id'),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
+              const Padding(
+                padding: EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
@@ -55,7 +57,7 @@ class LoginDemoState extends State<LoginDemo> {
                 onPressed: () {
                   //TODO FORGOT PASSWORD SCREEN GOES HERE
                 },
-                child: Text(
+                child: const Text(
                   'Forgot Password?',
                   style: TextStyle(color: Colors.blue, fontSize: 15),
                 ),
@@ -67,21 +69,24 @@ class LoginDemoState extends State<LoginDemo> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(20)),
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text(
+                  onPressed: () {
+                    Navigator.pushNamed(context, homescreen.id);
+                  },
+                  child: const Text(
                     'Login',
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               TextButton(
                 onPressed: () {
                   //TODO FORGOT PASSWORD SCREEN GOES HERE
+                  Navigator.pushNamed(context, RegistrationDemo.id);
                 },
-                child: Text(
+                child: const Text(
                   'New to Play On? Create Account',
                   style: TextStyle(
                       color: Color.fromARGB(255, 31, 212, 52), fontSize: 15),
