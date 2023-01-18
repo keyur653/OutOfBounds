@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:play_on/screens/login_page.dart';
+import 'package:play_on/screens/registration_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'widget/button.dart';
@@ -68,7 +70,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               bcolor: Colors.lightBlueAccent,
               buttonname: "Log In",
               onpressd: () {
-                // Navigator.pushNamed(context, LoginScreen.id);
+                Navigator.pushNamed(context, LoginDemo.id);
               },
             ).px(22),
             Button(
@@ -76,7 +78,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 bcolor: Colors.blueAccent,
                 buttonname: "Register",
                 onpressd: () {
-                  // Navigator.pushNamed(context, RegistrationScreen.id);
+                  Navigator.pushNamed(context, RegistrationDemo.id);
                 }).px(22)
           ],
         ),
