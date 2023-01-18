@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:play_on/screens/home_screen.dart';
 import 'package:play_on/screens/registration_page.dart';
@@ -9,6 +10,9 @@ class LoginDemo extends StatefulWidget {
 }
 
 class LoginDemoState extends State<LoginDemo> {
+  final _auth = FirebaseAuth.instance;
+  late String email;
+  late String password;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,25 +36,31 @@ class LoginDemoState extends State<LoginDemo> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email ID',
                       hintText: 'Enter registered email id'),
+                  onChanged: (value) {
+                    email = value;
+                  },
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                       hintText: 'Enter Your Password'),
+                  onChanged: (value) {
+                    password= value;
+                  },
                 ),
               ),
               TextButton(
@@ -69,8 +79,16 @@ class LoginDemoState extends State<LoginDemo> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(20)),
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, homescreen.id);
+                  onPressed: () async{
+                    try {
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: email, password: password);
+                      if (user != null) {
+                        Navigator.pushNamed(context, homescreen.id);
+                      };
+                    } catch (e) {
+                      print(e);
+                    }
                   },
                   child: const Text(
                     'Login',
