@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:play_on/screens/home_screen.dart';
 
 class RegistrationDemo extends StatefulWidget {
   static String id = "/registration";
@@ -11,13 +13,18 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
   String? _currentItemSelected = 'Other';
   final _role = ['Player', 'Turf Owner'];
   String? _currentItemSelected2 = 'Player';
+  final _auth = FirebaseAuth.instance;
+  late String email;
+  late String password;
+  late String name;
+  late String number;
+  late String area;
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("images/bgimage.jpg"),
-              fit: BoxFit.cover)),
+              image: AssetImage("images/bgimage.jpg"), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -33,61 +40,76 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                   height: 15,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Name',
                       hintText: "What's your name?"),
+                  onChanged: (value) {
+                    name = value;
+                  },
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email ID',
                       hintText: 'Enter your email id'),
+                  onChanged: (value) {
+                    email = value;
+                  },
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Mobile No.',
                       hintText: 'Enter your Mobile No.'),
+                  onChanged: (value) {
+                    number = value;
+                  },
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                       hintText: 'Set a Password'),
+                  onChanged: (value) {
+                    password = value;
+                  },
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Area',
                       hintText: 'Enter your Area or Pincode'),
+                  onChanged: (value) {
+                    area = value;
+                  },
                 ),
               ),
               Padding(
@@ -172,6 +194,34 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 15.0, right: 15.0, top: 15, bottom: 0),
+                child: Container(
+                  height: 50,
+                  width: 250,
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: ElevatedButton(
+                    onPressed: () async{
+                      try {
+                        final newUser = await _auth.createUserWithEmailAndPassword(
+                            email: email, password: password);
+                        if (newUser != null) {
+                          Navigator.pushNamed(context, homescreen.id);
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
+                    },
+                    child: const Text(
+                      'Register',
+                      style: TextStyle(color: Colors.white, fontSize: 25),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
