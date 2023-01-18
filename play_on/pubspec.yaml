@@ -33,6 +33,7 @@ dependencies:
   flutter:
     sdk: flutter
   velocity_x: ^3.6.0
+  firebase_auth: ^4.2.5
 
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to
