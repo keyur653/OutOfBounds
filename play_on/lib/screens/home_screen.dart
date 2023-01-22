@@ -1,14 +1,13 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 
-class homescreen extends StatefulWidget {
-  const homescreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
   static String id = "/home";
   @override
-  State<homescreen> createState() => _homescreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _homescreenState extends State<homescreen> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container();

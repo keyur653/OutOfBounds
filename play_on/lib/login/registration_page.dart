@@ -1,6 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:play_on/screens/home_screen.dart';
+import 'package:play_on/controller/process_data.dart';
+import 'package:play_on/controller/user_data.dart';
+import 'package:play_on/db%20Model/db_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:play_on/login/sport_list.dart';
+import 'package:play_on/widget/bottom_navigation.dart';
 
 class RegistrationDemo extends StatefulWidget {
   static String id = "/registration";
@@ -9,17 +14,48 @@ class RegistrationDemo extends StatefulWidget {
 }
 
 class _RegistrationDemoState extends State<RegistrationDemo> {
-  final _gender = ['Male', 'Female', 'Other'];
-  String? _currentItemSelected = 'Other';
-  final _role = ['Player', 'Turf Owner'];
-  String? _currentItemSelected2 = 'Player';
+  final _genderlist = ['Male', 'Female', 'Other'];
+  String? gender = 'Other';
+  List<Contents> rolelist = [];
+  String? role = 'Player';
   final _auth = FirebaseAuth.instance;
-  late String email;
-  late String password;
-  late String name;
-  late String number;
-  late String area;
+  final refrence = FirebaseFirestore.instance;
+  String? name, mbnumber, area;
+  DatabaseReference obj = DatabaseReference();
+
   @override
+  void initState() {
+    super.initState();
+    var roleref = obj.getDetailRef("Role");
+    roleref.snapshots().listen((event) {
+      if (mounted) {
+        setState(() {
+          for (var i = 0; i < event.docs.length; i++) {
+            rolelist.add(Contents.fromSnapshot(event.docs[i]));
+          }
+        });
+      }
+    });
+    getCurrentUser();
+  }
+
+  Future update() async {
+    FirebaseFirestore.instance
+        .collection('User')
+        .doc('current')
+        .collection(role!)
+        .doc(loggedInUser.email)
+        .set({
+      'Name': name.toString(),
+      'MobileNum': mbnumber,
+      'Area': area,
+      'Email': loggedInUser.email,
+      'Gender': gender,
+      'Sports': ["cricket","kabaddi"],
+      'Role': role
+    });
+  }
+
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
@@ -44,7 +80,6 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
-                  obscureText: true,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Name',
@@ -57,28 +92,14 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
               Padding(
                 padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
-                child: TextField(
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email ID',
-                      hintText: 'Enter your email id'),
-                  onChanged: (value) {
-                    email = value;
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 15.0, right: 15.0, top: 15, bottom: 0),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
-                  obscureText: true,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Mobile No.',
                       hintText: 'Enter your Mobile No.'),
                   onChanged: (value) {
-                    number = value;
+                    mbnumber = value;
                   },
                 ),
               ),
@@ -87,22 +108,6 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                      hintText: 'Set a Password'),
-                  onChanged: (value) {
-                    password = value;
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 15.0, right: 15.0, top: 15, bottom: 0),
-                //padding: EdgeInsets.symmetric(horizontal: 15),
-                child: TextField(
-                  obscureText: true,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Area',
@@ -133,7 +138,7 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                       width: 50,
                     ),
                     DropdownButton<String>(
-                      items: _gender.map((String dropDownStringItem) {
+                      items: _genderlist.map((String dropDownStringItem) {
                         return DropdownMenuItem<String>(
                           value: dropDownStringItem,
                           child: Text(
@@ -144,10 +149,10 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                       }).toList(),
                       onChanged: (String? newValueSelected) {
                         setState(() {
-                          _currentItemSelected = newValueSelected;
+                          gender = newValueSelected;
                         });
                       },
-                      value: _currentItemSelected,
+                      value: gender,
                     ),
                   ],
                 ),
@@ -175,21 +180,20 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                       width: 50,
                     ),
                     DropdownButton<String>(
-                      items: _role.map((String dropDownStringItem2) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem2,
-                          child: Text(
-                            dropDownStringItem2,
-                            style: const TextStyle(fontSize: 20),
-                          ),
-                        );
-                      }).toList(),
+                      items: rolelist
+                          .map((e) => DropdownMenuItem<String>(
+                              value: e.name,
+                              child: Text(
+                                e.name!,
+                                style: const TextStyle(fontSize: 20),
+                              )))
+                          .toList(),
                       onChanged: (String? newValueSelected2) {
                         setState(() {
-                          _currentItemSelected2 = newValueSelected2;
+                          role = newValueSelected2;
                         });
                       },
-                      value: _currentItemSelected2,
+                      value: role,
                     ),
                   ],
                 ),
@@ -204,17 +208,12 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(20)),
                   child: ElevatedButton(
-                    onPressed: () async{
-                      try {
-                        final newUser = await _auth.createUserWithEmailAndPassword(
-                            email: email, password: password);
-                        if (newUser != null) {
-                          Navigator.pushNamed(context, homescreen.id);
-                        }
-                      } catch (e) {
-                        print(e);
-                      }
-                    },
+                    onPressed: (() {
+                      update();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => Sportlist(role: role,)),
+                      );
+                    }),
                     child: const Text(
                       'Register',
                       style: TextStyle(color: Colors.white, fontSize: 25),
