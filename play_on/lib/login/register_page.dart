@@ -1,18 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter/material.dart';
-import 'package:play_on/screens/home_screen.dart';
-import 'package:play_on/screens/registration_page.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:play_on/login/registration_page.dart';
 
-class LoginDemo extends StatefulWidget {
-  static String id = "/login";
+class RegisterDemo extends StatefulWidget {
+  static String id = "/Register";
   @override
-  LoginDemoState createState() => LoginDemoState();
+  RegisterDemoState createState() => RegisterDemoState();
 }
 
-class LoginDemoState extends State<LoginDemo> {
+class RegisterDemoState extends State<RegisterDemo> {
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
+  bool isspinner = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,15 +24,16 @@ class LoginDemoState extends State<LoginDemo> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: const Text("Welcome Back!"),
+          title: const Text("Welcome to Play On"),
         ),
-        body: SingleChildScrollView(
+        body: ModalProgressHUD(
+          inAsyncCall: isspinner,
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 60.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 60.0),
                 child: Center(
-                  child: Container(
+                  child: SizedBox(
                     width: 200,
                     height: 150,
                   ),
@@ -39,6 +42,7 @@ class LoginDemoState extends State<LoginDemo> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
+                  keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email ID',
@@ -59,18 +63,12 @@ class LoginDemoState extends State<LoginDemo> {
                       labelText: 'Password',
                       hintText: 'Enter Your Password'),
                   onChanged: (value) {
-                    password= value;
+                    password = value;
                   },
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  //TODO FORGOT PASSWORD SCREEN GOES HERE
-                },
-                child: const Text(
-                  'Forgot Password?',
-                  style: TextStyle(color: Colors.blue, fontSize: 15),
-                ),
+              const SizedBox(
+                height: 20,
               ),
               Container(
                 height: 50,
@@ -79,36 +77,41 @@ class LoginDemoState extends State<LoginDemo> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(20)),
                 child: ElevatedButton(
-                  onPressed: () async{
+                  onPressed: () async {
+                    setState(() {
+                      isspinner = true;
+                    });
                     try {
-                      final user = await _auth.signInWithEmailAndPassword(
-                          email: email, password: password);
-                      if (user != null) {
-                        Navigator.pushNamed(context, homescreen.id);
-                      };
+                      final newUser =
+                          await _auth.createUserWithEmailAndPassword(
+                              email: email, password: password);
+                      if (newUser != null) {
+                        Navigator.pushNamed(context, RegistrationDemo.id);
+                      }
+                      isspinner = false;
                     } catch (e) {
                       print(e);
                     }
+                    setState(() {
+                      isspinner = false;
+                    });
                   },
                   child: const Text(
-                    'Login',
+                    'Sign In',
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 30,
+              // Divider(),
+              SizedBox(
+                height: 10,
               ),
-              TextButton(
+              SignInButton(
+                padding: EdgeInsets.only(right: 15, left: 15),
+                Buttons.Google,
                 onPressed: () {
-                  //TODO FORGOT PASSWORD SCREEN GOES HERE
                   Navigator.pushNamed(context, RegistrationDemo.id);
                 },
-                child: const Text(
-                  'New to Play On? Create Account',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 31, 212, 52), fontSize: 15),
-                ),
               ),
             ],
           ),

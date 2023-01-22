@@ -1,10 +1,8 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:play_on/screens/setting_page.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'edit_profile.dart';
 
 class SettingsUI extends StatelessWidget {
   @override
@@ -18,6 +16,7 @@ class SettingsUI extends StatelessWidget {
 }
 
 class EditProfilePage extends StatefulWidget {
+  String id = "/editprofile";
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
