@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:play_on/screens/home_screen.dart';
+import 'package:play_on/screens/profile_screen.dart';
 import 'package:play_on/screens/registration_page.dart';
 
 class LoginDemo extends StatefulWidget {
@@ -59,7 +60,7 @@ class LoginDemoState extends State<LoginDemo> {
                       labelText: 'Password',
                       hintText: 'Enter Your Password'),
                   onChanged: (value) {
-                    password= value;
+                    password = value;
                   },
                 ),
               ),
@@ -79,13 +80,14 @@ class LoginDemoState extends State<LoginDemo> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(20)),
                 child: ElevatedButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     try {
                       final user = await _auth.signInWithEmailAndPassword(
                           email: email, password: password);
                       if (user != null) {
-                        Navigator.pushNamed(context, homescreen.id);
-                      };
+                        Navigator.pushNamed(context, ProfileScreen.id);
+                      }
+                      ;
                     } catch (e) {
                       print(e);
                     }
