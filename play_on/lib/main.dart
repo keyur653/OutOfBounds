@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => const HomeScreen(),
         RegisterDemo.id: (context) => RegisterDemo(),
         EditProfilePage().id: ((context) => EditProfilePage()),
-        Create.id: (context) => const Create()
       },
     );
   }

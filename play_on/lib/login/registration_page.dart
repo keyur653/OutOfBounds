@@ -52,7 +52,7 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
       'Email': loggedInUser.email,
       'Gender': gender,
       'Sports': ["cricket","kabaddi"],
-      'Role': role
+      'Role': role,
     });
   }
 

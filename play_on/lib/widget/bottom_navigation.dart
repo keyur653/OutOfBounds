@@ -26,8 +26,9 @@ class _UserBottomNavState extends State<UserBottomNav> {
   void createlist() {
     _children = [
       const HomeScreen(),
-      const FindPlayer(),
-      const Create(),
+      FindPlayerpage(
+          details: widget.details, sportdetails: widget.sportdetails),
+      Create(details: widget.details, sportdetails: widget.sportdetails),
       ProfileScreen(details: widget.details, sportdetails: widget.sportdetails)
     ];
   }

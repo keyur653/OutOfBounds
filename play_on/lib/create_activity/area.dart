@@ -32,7 +32,7 @@ class _AreaState extends State<Area> {
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.green)),
                 onPressed: (() {
-                  Navigator.pop(context, "${_controller.text}");
+                  Navigator.pop(context, "${_controller.text}".trim());
                 }),
                 child: "Enter".text.make())
             .w32(context)

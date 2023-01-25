@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -7,25 +8,34 @@ import 'package:intl/intl.dart';
 import 'package:play_on/create_activity/area.dart';
 import 'package:play_on/create_activity/select_sport.dart';
 import 'package:play_on/create_activity/time.dart';
-
 import 'package:velocity_x/velocity_x.dart';
+
+import '../controller/user_data.dart';
 
 class Create extends StatefulWidget {
   static String id = "/create";
-  const Create({super.key});
+  final List<String> details;
+  final List sportdetails;
+  const Create({
+    Key? key,
+    required this.details,
+    required this.sportdetails,
+  }) : super(key: key);
 
   @override
   State<Create> createState() => _CreateState();
 }
 
 class _CreateState extends State<Create> {
+  int i = 1;
   String time = "Pick Exact Time";
   String date = "Pick a Day";
   String sport = "Eg.Badminton/Cricket/Football";
   String area = "Locality or Venue";
   String access = "";
-  TextEditingController _controllerCost = TextEditingController();
-  TextEditingController _controllerTplayer = TextEditingController();
+  TextEditingController _controllerCost =
+      TextEditingController(text: "No Cost");
+  TextEditingController _controllerTplayer = TextEditingController(text: "0");
   CategoryType categoryType = CategoryType.public;
   bool isSwitched = false;
   bool isSelected1 = false;
@@ -39,6 +49,22 @@ class _CreateState extends State<Create> {
   @override
   void initState() {
     super.initState();
+  }
+
+  void clear() {
+    setState(() {
+      time = "Pick Exact Time";
+      date = "Pick a Day";
+      sport = "Eg.Badminton/Cricket/Football";
+      area = "Locality or Venue";
+      access = "";
+      _controllerCost.text = "No Cost";
+      categoryType = CategoryType.public;
+      isSwitched = false;
+      isSelected1 = false;
+      isSelected2 = false;
+      isSelected3 = false;
+    });
   }
 
   void toggleSwitch(bool value) {
@@ -106,12 +132,39 @@ class _CreateState extends State<Create> {
     });
   }
 
+  Future update() async {
+    FirebaseFirestore.instance
+        .collection('User')
+        .doc(area)
+        .collection(sport)
+        .doc("$i${loggedInUser.email}")
+        .set({
+      'Name': widget.details[0],
+      'Sport': sport,
+      'Area': area,
+      'Date': date,
+      'Time': time,
+      'Access': access,
+      'Cost': _controllerCost.text,
+      'Tplayer': _controllerTplayer.text,
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       bottomSheet: ElevatedButton(
               style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.green)),
-              onPressed: (() {}),
+              onPressed: (() {
+                i = i + 1;
+                update();
+                clear();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Actvity Added Succesfully"),
+                  ),
+                );
+              }),
               child: "Create Activity"
                   .text
                   .bold

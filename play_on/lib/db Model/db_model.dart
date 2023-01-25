@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PlayerProfile {
@@ -16,6 +17,24 @@ class PlayerProfile {
         sport = snapshot.get('Sport').toString();
 }
 
+class FindPlayer {
+String? name, area,sport,access,cost,date,time,tplayer;
+
+  FindPlayer(
+    this.area,sport,access,cost,date,time,tplayer,
+  );
+
+  FindPlayer.fromSnapshot(DocumentSnapshot snapshot)
+      : name = snapshot.get('Name').toString(),
+        access = snapshot.get('Access').toString(),
+        cost = snapshot.get('Cost').toString(),
+        date = snapshot.get('Date').toString(),
+        area = snapshot.get('Area').toString(),
+        time = snapshot.get('Time').toString(),
+        tplayer = snapshot.get('Tplayer').toString(),
+        sport = snapshot.get('Sport').toString();
+}
+
 class Contents {
   String? name;
   String? key;
@@ -30,9 +49,9 @@ class Contents {
 
 class DatabaseReference {
   /// get profile when passing class, year and department as arguments
-  CollectionReference getProfile(String? role) {
+  CollectionReference getPlayer(String area,String sport) {
     return (FirebaseFirestore.instance
-        .collection('User/current/$role'));
+        .collection('User/$area/$sport'));
   }
 
   CollectionReference placeAttendance(String? cls, String? yer, String? dep) {
