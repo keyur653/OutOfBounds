@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:play_on/screens/activity_Detail.dart';
 
 class FindPlayer extends StatefulWidget {
   @override
@@ -18,6 +18,8 @@ class _FindPlayerState extends State<FindPlayer> {
 }
 
 class Home extends StatefulWidget {
+  static var arrCard;
+
   @override
   State<Home> createState() => _HomeState();
 }
@@ -37,23 +39,125 @@ class _HomeState extends State<Home> {
   String? _currentItemSelected = 'Cricket';
 
   var arrCard = [
-    {'name': 'NIK','sports':'Football','players':10,'location':'Borivali','Cost':0},
-    {'name': 'Akshay','sports':'Kabaddi','players':7,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
-    {'name': 'keyur','sports':'Cricket','players':11,'location':'Borivali','Cost':100},
+    {
+      'name': 'NIK',
+      'sports': 'Football',
+      'players': 10,
+      'location': 'Borivali',
+      'Cost': 0
+    },
+    {
+      'name': 'Akshay',
+      'sports': 'Kabaddi',
+      'players': 7,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
+    {
+      'name': 'keyur',
+      'sports': 'Cricket',
+      'players': 11,
+      'location': 'Borivali',
+      'Cost': 100
+    },
   ];
 
   @override
@@ -115,45 +219,75 @@ class _HomeState extends State<Home> {
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(20),
-              child: ListView.separated(itemBuilder: (context, index) {
-                return Card(
-                  elevation: 10,
-                  child: Padding(
-                    padding: EdgeInsets.all(5),
-                    child: InkWell(
-                      onTap: () {
-                        
-                      },
-                      child: Column(
-                        
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(right: 30
-                            ),
-                            child: Row(
-                              children: [
-                                Text('Creator:${arrCard[index]['name'].toString()}',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+              child: ListView.separated(
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 10,
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            Navigator.pushNamed(context, ActivityDetail.id);
+                          });
+                        },
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(right: 30),
+                              child: Row(children: [
+                                Text(
+                                  'Creator:${arrCard[index]['name'].toString()}',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
                                 SizedBox(width: 60),
-                                Text('sport:${arrCard[index]['sports'].toString()}',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold)),
+                                Text(
+                                    'sport:${arrCard[index]['sports'].toString()}',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold)),
                               ]),
-                          ),
-                          Row(
-                            children: [
-                              Text('Player Count:${arrCard[index]['players'].toString()}',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold)),
-                              SizedBox(width: 80,),
-                              Text('Cost:${arrCard[index]['Cost'].toString()}',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold))
-                            ],
-                          ),
-                          Text('location:${arrCard[index]['location'].toString()}',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold)),
-                          Padding(padding: EdgeInsets.all(10))
-                        ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                    'Player Count:${arrCard[index]['players'].toString()}',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold)),
+                                SizedBox(
+                                  width: 80,
+                                ),
+                                Text(
+                                    'Cost:${arrCard[index]['Cost'].toString()}',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold))
+                              ],
+                            ),
+                            Text(
+                                'location:${arrCard[index]['location'].toString()}',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold)),
+                            Padding(padding: EdgeInsets.all(10))
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }, separatorBuilder: (context, index) {
-                return Divider(height: 10,thickness: 4,);
-              }, itemCount: arrCard.length,shrinkWrap: true,scrollDirection: Axis.vertical,),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return Divider(
+                    height: 10,
+                    thickness: 4,
+                  );
+                },
+                itemCount: arrCard.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+              ),
             ),
           )
         ],

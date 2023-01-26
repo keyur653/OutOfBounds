@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:play_on/login/register_page.dart';
 import 'package:play_on/create_activity/create.dart';
+import 'package:play_on/screens/activity_Detail.dart';
 import 'package:play_on/screens/edit_profile.dart';
 import 'package:play_on/screens/home_screen.dart';
 import 'package:play_on/login/login_page.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: WelcomeScreen.id,
+      initialRoute: ActivityDetail.id,
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         LoginDemo.id: (context) => const LoginDemo(),
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => const HomeScreen(),
         RegisterDemo.id: (context) => RegisterDemo(),
         EditProfilePage().id: ((context) => EditProfilePage()),
-        Create.id: (context) => const Create()
+        Create.id: (context) => const Create(),
+        ActivityDetail.id: (context) =>const ActivityDetail(),
       },
     );
   }
