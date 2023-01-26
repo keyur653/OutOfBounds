@@ -2,9 +2,9 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:play_on/screens/edit_profile.dart';
+import 'package:play_on/screens/profile/edit_profile.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   static String id = "/profile";
   final List<String> details;
   final List sportdetails;
@@ -13,11 +13,17 @@ class ProfileScreen extends StatelessWidget {
     required this.details,
     required this.sportdetails,
   }) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromRGBO(0, 77, 77, 10.0),
         leading:
             IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
         title: const Text("Profile"),
@@ -29,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => EditProfilePage()));
+                  builder: (BuildContext context) => EditProfilePage(details: widget.details, sportdetails: widget.sportdetails)));
             },
           ),
         ],
@@ -39,12 +45,12 @@ class ProfileScreen extends StatelessWidget {
         minimum: const EdgeInsets.only(top: 10),
         child: Column(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('images/profile_image.jpg'),
+              backgroundImage: (widget.details[6]=="hi")? AssetImage('images/profile_image.jpg'): NetworkImage(widget.details[6]) as ImageProvider,
             ),
             Text(
-              details[0],
+              widget.details[0],
               style: const TextStyle(
                 fontSize: 40.0,
                 color: Colors.black,
@@ -72,26 +78,26 @@ class ProfileScreen extends StatelessWidget {
             // we will be creating a new widget name info carrd
 
             InfoCard(
-                text: details[1], icon: Icons.phone, onPressed: () async {}),
+                text: widget.details[1], icon: Icons.phone, onPressed: () async {}),
             InfoCard(
-              text: details[2],
+              text: widget.details[2],
               icon: Icons.person,
               onPressed: () {},
             ),
             InfoCard(
-                text: details[3],
-                icon: details[3] == 'Male'
+                text: widget.details[3],
+                icon: widget.details[3] == 'Male'
                     ? Icons.male_rounded
                     : Icons.female_rounded,
                 onPressed: () async {}),
             InfoCard(
-                text: details[4],
+                text: widget.details[4],
                 icon: Icons.location_city,
                 onPressed: () async {}),
             InfoCard(
-                text: details[5], icon: Icons.email, onPressed: () async {}),
+                text: widget.details[5], icon: Icons.email, onPressed: () async {}),
             InfoCard(
-              text: "${sportdetails[0]} , ${sportdetails[1]}",
+              text: "${widget.sportdetails[0]} , ${widget.sportdetails[1]}",
               icon: Icons.sports,
               onPressed: () {},
             )

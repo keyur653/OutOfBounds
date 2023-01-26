@@ -18,11 +18,9 @@ class PlayerProfile {
 }
 
 class FindPlayer {
-String? name, area,sport,access,cost,date,time,tplayer;
+  String? name, area, sport, access, cost, date, time, tplayer, profileurl;
 
-  FindPlayer(
-    this.area,sport,access,cost,date,time,tplayer,
-  );
+  FindPlayer(this.area, sport, access, cost, date, time, tplayer, profileurl);
 
   FindPlayer.fromSnapshot(DocumentSnapshot snapshot)
       : name = snapshot.get('Name').toString(),
@@ -32,7 +30,8 @@ String? name, area,sport,access,cost,date,time,tplayer;
         area = snapshot.get('Area').toString(),
         time = snapshot.get('Time').toString(),
         tplayer = snapshot.get('Tplayer').toString(),
-        sport = snapshot.get('Sport').toString();
+        sport = snapshot.get('Sport').toString(),
+        profileurl = snapshot.get('Profileurl').toString();
 }
 
 class Contents {
@@ -49,9 +48,8 @@ class Contents {
 
 class DatabaseReference {
   /// get profile when passing class, year and department as arguments
-  CollectionReference getPlayer(String area,String sport) {
-    return (FirebaseFirestore.instance
-        .collection('User/$area/$sport'));
+  CollectionReference getPlayer(String area, String sport) {
+    return (FirebaseFirestore.instance.collection('User/$area/$sport'));
   }
 
   CollectionReference placeAttendance(String? cls, String? yer, String? dep) {

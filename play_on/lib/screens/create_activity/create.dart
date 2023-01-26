@@ -5,12 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:play_on/create_activity/area.dart';
-import 'package:play_on/create_activity/select_sport.dart';
-import 'package:play_on/create_activity/time.dart';
+import 'package:play_on/screens/create_activity/area.dart';
+import 'package:play_on/screens/create_activity/select_sport.dart';
+import 'package:play_on/screens/create_activity/time.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../controller/user_data.dart';
+import '../../controller/user_data.dart';
 
 class Create extends StatefulWidget {
   static String id = "/create";
@@ -147,6 +147,7 @@ class _CreateState extends State<Create> {
       'Access': access,
       'Cost': _controllerCost.text,
       'Tplayer': _controllerTplayer.text,
+      'Profileurl':widget.details[6],
     });
   }
 

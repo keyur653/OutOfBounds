@@ -46,13 +46,14 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
         .collection(role!)
         .doc(loggedInUser.email)
         .set({
-      'Name': name.toString(),
-      'MobileNum': mbnumber,
-      'Area': area,
-      'Email': loggedInUser.email,
+      'Name': name.toString().trim(),
+      'MobileNum': mbnumber!.trim(),
+      'Area': area!.trim(),
+      'Email': loggedInUser.email!.trim(),
       'Gender': gender,
-      'Sports': ["cricket","kabaddi"],
-      'Role': role,
+      'Sports': ["cricket", "kabaddi"],
+      'Role': role!.trim(),
+      'Profileurl':"hi"
     });
   }
 
@@ -211,7 +212,10 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                     onPressed: (() {
                       update();
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => Sportlist(role: role,)),
+                        MaterialPageRoute(
+                            builder: (_) => Sportlist(
+                                  role: role,
+                                )),
                       );
                     }),
                     child: const Text(
