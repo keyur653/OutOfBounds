@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/login/register_page.dart';
+import 'package:play_on/login/reset_screen.dart';
 import 'package:play_on/screens/profile/profile_screen.dart';
 import 'package:play_on/login/registration_page.dart';
 
@@ -73,6 +74,7 @@ class LoginDemoState extends State<LoginDemo> {
               TextButton(
                 onPressed: () {
                   //TODO FORGOT PASSWORD SCREEN GOES HERE
+                  Navigator.pushNamed(context, ResetScreen.id);
                 },
                 child: const Text(
                   'Forgot Password?',
@@ -116,7 +118,6 @@ class LoginDemoState extends State<LoginDemo> {
               ),
               TextButton(
                 onPressed: () {
-                  //TODO FORGOT PASSWORD SCREEN GOES HERE
                   Navigator.pushNamed(context, RegisterDemo.id);
                 },
                 child: const Text(
