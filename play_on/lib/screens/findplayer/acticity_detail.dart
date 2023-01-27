@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -22,7 +23,22 @@ class ActivityDetail extends StatefulWidget {
 }
 
 class _ActivityDetailState extends State<ActivityDetail> {
+  TextEditingController _controllemial = TextEditingController();
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  Future updateQuery() async {
+    FirebaseFirestore.instance
+        .collection('User')
+        .doc(widget.playeract.area)
+        .collection(widget.playeract.sport!)
+        .doc(widget.playeract.email)
+        .set({});
+  }
+
   Widget build(BuildContext context) {
     // var index;
     // var arrCard;
@@ -193,6 +209,47 @@ class _ActivityDetailState extends State<ActivityDetail> {
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
+                            // ListView.separated(
+                            //     itemBuilder: ((context, index) {
+                            //       return ListTile(
+                            //         leading: "Q.".text.make(),
+                            //         title: widget.playeract.queries![index].text
+                            //             .make(),
+                            //         subtitle: Row(
+                            //           children: [
+                            //             CircleAvatar(
+                            //               radius: 20,
+                            //               backgroundColor:
+                            //                   const Color(0xff476cfb),
+                            //               child: ClipOval(
+                            //                 child: SizedBox(
+                            //                   width: 40.0,
+                            //                   height: 40.0,
+                            //                   child: (widget.playeract
+                            //                               .profileurl ==
+                            //                           "hi")
+                            //                       ? Image.asset(
+                            //                           'assets/noimage.png',
+                            //                           fit: BoxFit.fill,
+                            //                         )
+                            //                       : Image.network(widget
+                            //                           .playeract.profileurl!),
+                            //                 ),
+                            //               ),
+                            //             ),
+                            //             SizedBox(
+                            //               width: 5,
+                            //             ),
+                            //             widget.playeract.qsender![index].text
+                            //                 .make()
+                            //           ],
+                            //         ),
+                            //       );
+                            //     }),
+                            //     separatorBuilder: (context, index) {
+                            //       return Divider();
+                            //     },
+                            //     itemCount: widget.playeract.queries!.length),
                             Row(
                               children: [
                                 Expanded(
@@ -207,7 +264,13 @@ class _ActivityDetailState extends State<ActivityDetail> {
                                 ),
                                 Expanded(
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            _buildPopupDialog(context),
+                                      );
+                                    },
                                     child: "Send Query".text.make(),
                                     style: ButtonStyle(
                                         backgroundColor:
@@ -230,6 +293,65 @@ class _ActivityDetailState extends State<ActivityDetail> {
         ),
       ),
     );
-    ;
+  }
+
+  Widget _buildPopupDialog(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Add Your Query'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          buildTextField("Query", "Enter your query", _controllemial,
+              TextInputType.name, () {})
+        ],
+      ),
+      actions: <Widget>[
+        ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStatePropertyAll(Colors.green)),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Send Query'),
+        ),
+      ],
+    );
+  }
+
+  Widget buildTextField(
+      String labelText,
+      String placeholder,
+      TextEditingController controll,
+      TextInputType keyboard,
+      void Function() ontap) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 35.0),
+      child: TextFormField(
+        keyboardType: keyboard,
+        controller: controll,
+        onTap: ontap,
+        decoration: InputDecoration(
+          contentPadding:
+              EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+          labelText: labelText,
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
+          hintText: placeholder,
+          hintStyle: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey, width: 2.0),
+            // borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.green, width: 2.0),
+            // borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          ),
+        ),
+      ),
+    );
   }
 }

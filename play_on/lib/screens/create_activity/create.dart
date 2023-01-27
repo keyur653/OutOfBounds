@@ -27,12 +27,12 @@ class Create extends StatefulWidget {
 }
 
 class _CreateState extends State<Create> {
-  int i = 1;
   String time = "Pick Exact Time";
   String date = "Pick a Day";
   String sport = "Eg.Badminton/Cricket/Football";
   String area = "Locality or Venue";
   String access = "";
+  int i = 1;
   TextEditingController _controllerCost =
       TextEditingController(text: "No Cost");
   TextEditingController _controllerTplayer = TextEditingController(text: "0");
@@ -147,7 +147,28 @@ class _CreateState extends State<Create> {
       'Access': access,
       'Cost': _controllerCost.text,
       'Tplayer': _controllerTplayer.text,
-      'Profileurl':widget.details[6],
+      'Profileurl': widget.details[6],
+      'Players':[],
+      'Queries':[],
+      'QSenders':[],
+      'Email':"$i${loggedInUser.email}"
+    });
+
+    FirebaseFirestore.instance
+        .collection('User')
+        .doc("myactivity")
+        .collection("${loggedInUser.email}")
+        .doc("$i$area")
+        .set({
+      'Name': widget.details[0],
+      'Sport': sport,
+      'Area': area,
+      'Date': date,
+      'Time': time,
+      'Access': access,
+      'Cost': _controllerCost.text,
+      'Tplayer': _controllerTplayer.text,
+      'Profileurl': widget.details[6],
     });
   }
 

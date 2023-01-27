@@ -18,9 +18,21 @@ class PlayerProfile {
 }
 
 class FindPlayer {
-  String? name, area, sport, access, cost, date, time, tplayer, profileurl;
+  String? name,
+      area,
+      sport,
+      access,
+      cost,
+      date,
+      time,
+      tplayer,
+      profileurl,
+      email;
 
-  FindPlayer(this.area, sport, access, cost, date, time, tplayer, profileurl);
+  List players, queries, qsender;
+
+  FindPlayer(this.area, this.sport, this.access, this.cost, this.date, this.time, this.tplayer, this.profileurl,
+      this.players, this.queries, this.qsender, this.email);
 
   FindPlayer.fromSnapshot(DocumentSnapshot snapshot)
       : name = snapshot.get('Name').toString(),
@@ -31,7 +43,11 @@ class FindPlayer {
         time = snapshot.get('Time').toString(),
         tplayer = snapshot.get('Tplayer').toString(),
         sport = snapshot.get('Sport').toString(),
-        profileurl = snapshot.get('Profileurl').toString();
+        profileurl = snapshot.get('Profileurl').toString(),
+        players = snapshot.get('Players'),
+        queries = snapshot.get('Queries'),
+        qsender = snapshot.get('QSenders'),
+        email = snapshot.get('Email').toString();
 }
 
 class Contents {

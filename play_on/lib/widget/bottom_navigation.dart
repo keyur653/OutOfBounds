@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:play_on/screens/create_activity/create.dart';
 import 'package:play_on/screens/findplayer/find_players.dart';
-import 'package:play_on/screens/home_screen.dart';
+import 'package:play_on/screens/home_screen/home_screen.dart';
 import 'package:play_on/screens/profile/profile_screen.dart';
 
 class UserBottomNav extends StatefulWidget {
@@ -25,7 +25,7 @@ class _UserBottomNavState extends State<UserBottomNav> {
   List<Widget> _children = [];
   void createlist() {
     _children = [
-      const HomeScreen(),
+      HomeScreen(details: widget.details, sportdetails: widget.sportdetails),
       FindPlayerpage(
           details: widget.details, sportdetails: widget.sportdetails),
       Create(details: widget.details, sportdetails: widget.sportdetails),
