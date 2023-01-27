@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:play_on/login/register_page.dart';
-import 'package:play_on/create_activity/create.dart';
-import 'package:play_on/screens/edit_profile.dart';
-import 'package:play_on/screens/home_screen.dart';
+import 'package:play_on/screens/create_activity/create.dart';
+import 'package:play_on/screens/findplayer/acticity_detail.dart';
+import 'package:play_on/screens/profile/edit_profile.dart';
+import 'package:play_on/screens/home_screen/home_screen.dart';
 import 'package:play_on/login/login_page.dart';
-import 'package:play_on/screens/profile_screen.dart';
+import 'package:play_on/screens/profile/profile_screen.dart';
 import 'package:play_on/login/registration_page.dart';
 import 'package:play_on/login/sport_list.dart';
 import 'package:play_on/welcome_screen.dart';
@@ -30,10 +31,8 @@ class MyApp extends StatelessWidget {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         LoginDemo.id: (context) => const LoginDemo(),
         RegistrationDemo.id: (context) => RegistrationDemo(),
-        HomeScreen.id: (context) => const HomeScreen(),
         RegisterDemo.id: (context) => RegisterDemo(),
-        EditProfilePage().id: ((context) => EditProfilePage()),
-        Create.id: (context) => const Create()
+        // ActivityDetail.id:(context) => const ActivityDetail(),
       },
     );
   }

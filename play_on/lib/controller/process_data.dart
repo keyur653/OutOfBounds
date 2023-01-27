@@ -32,13 +32,18 @@ class _ProcessDataState extends State<ProcessData> {
         ..add(event.data()!['Role'])
         ..add(event.data()!['Gender'])
         ..add(event.data()!['Area'])
-        ..add(event.data()!['Email']);
+        ..add(event.data()!['Email'])
+        ..add(event.data()!['Profileurl']);
 
-      sportdetails=event.data()!['Sports'];
+      sportdetails = event.data()!['Sports'];
       print(details);
 
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (_) => UserBottomNav(details: details,sportdetails: sportdetails,)),
+        MaterialPageRoute(
+            builder: (_) => UserBottomNav(
+                  details: details,
+                  sportdetails: sportdetails,
+                )),
       );
     });
     return details;
