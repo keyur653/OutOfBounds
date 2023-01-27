@@ -1,7 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:play_on/welcome_screen.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -102,7 +106,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     backgroundColor: MaterialStatePropertyAll(Colors.teal),
                     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)))),
-                onPressed: () {},
+                onPressed: () async {
+                  await GoogleSignIn().signOut();
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushNamed(context, WelcomeScreen.id);
+                },
                 child: const Text("SIGN OUT",
                     style: TextStyle(
                         fontSize: 16, letterSpacing: 2.2, color: Colors.white)),
