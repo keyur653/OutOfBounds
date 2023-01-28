@@ -7,6 +7,7 @@ import 'package:play_on/screens/create_activity/create.dart';
 import 'package:play_on/screens/findplayer/find_players.dart';
 import 'package:play_on/screens/home_screen/home_screen.dart';
 import 'package:play_on/screens/profile/profile_screen.dart';
+import 'package:play_on/screens/turf/turfhome.dart';
 
 class UserBottomNav extends StatefulWidget {
   final List<String> details;
@@ -29,6 +30,7 @@ class _UserBottomNavState extends State<UserBottomNav> {
       FindPlayerpage(
           details: widget.details, sportdetails: widget.sportdetails),
       Create(details: widget.details, sportdetails: widget.sportdetails),
+      FindTurf(),
       ProfileScreen(details: widget.details, sportdetails: widget.sportdetails)
     ];
   }
@@ -97,12 +99,16 @@ class _UserBottomNavState extends State<UserBottomNav> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Find',
+              icon: Icon(Icons.person_pin_outlined ),
+              label: 'Meet',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.create),
               label: 'Create',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Turf',
             ),
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.profile_circled),

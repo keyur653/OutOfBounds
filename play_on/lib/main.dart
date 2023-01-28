@@ -35,7 +35,8 @@ class MyApp extends StatelessWidget {
         RegistrationDemo.id: (context) => RegistrationDemo(),
         RegisterDemo.id: (context) => RegisterDemo(),
         ResetScreen.id: (context) => ResetScreen(),
-        paymentPage.id: (context) => paymentPage(),
+        
+        // paymentPage.id: (context) => paymentPage(),
         // ActivityDetail.id:(context) => ActivityDetail(),
       },
     );
