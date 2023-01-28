@@ -1,35 +1,33 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/db%20Model/db_model.dart';
 import 'package:play_on/screens/findplayer/acticity_detail.dart';
+import 'package:play_on/screens/home_screen/my_activities/my_act_detail.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class FindPlayerpage extends StatefulWidget {
+class MyActivity extends StatefulWidget {
   final List<String> details;
   final List sportdetails;
-  const FindPlayerpage({
+  const MyActivity({
     Key? key,
     required this.details,
     required this.sportdetails,
   }) : super(key: key);
   @override
-  State<FindPlayerpage> createState() => _FindPlayerpageState();
+  State<MyActivity> createState() => _MyActivityState();
 }
 
-class _FindPlayerpageState extends State<FindPlayerpage> {
+class _MyActivityState extends State<MyActivity> {
   DatabaseReference obj = DatabaseReference();
   List<FindPlayer> playeract = [];
 
   final area = ['Borivali', 'Dadar', 'Bandra', 'Andheri'];
-  String? _currentsportSelected = "";
-  String? _currentareaSelected;
 
   @override
   void initState() {
     super.initState();
     print(widget.sportdetails);
-    _currentsportSelected = widget.sportdetails[0];
-    _currentareaSelected = widget.details[4];
     _getPlayer();
   }
 
@@ -41,7 +39,7 @@ class _FindPlayerpageState extends State<FindPlayerpage> {
 
   void _getPlayer() {
     _clearItem();
-    var ref = obj.getPlayer(_currentareaSelected!, _currentsportSelected!);
+    var ref = obj.getPlayer("myactivity", loggedInUser.email!);
     print(ref);
     ref.snapshots().listen((event) {
       setState(() {
@@ -57,11 +55,13 @@ class _FindPlayerpageState extends State<FindPlayerpage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Find Player"),
+        title: Text("My Activity"),
         elevation: 0.0,
         backgroundColor: Color.fromRGBO(0, 77, 77, 10.0),
         leading: TextButton(
-            onPressed: (() {}),
+            onPressed: (() {
+              Navigator.pop(context);
+            }),
             child: Icon(
               Icons.arrow_back_ios_new_rounded,
               color: Colors.green,
@@ -75,98 +75,6 @@ class _FindPlayerpageState extends State<FindPlayerpage> {
         }),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 0.0),
-              child: Container(
-                width: 200,
-                height: 15,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 10.0, right: 10.0, top: 15, bottom: 0),
-              //padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: Text("Location",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 20, color: Colors.black)),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(
-                        left: 15.0, right: 15.0, top: 15, bottom: 0),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                    width: 50,
-                  ),
-                  DropdownButton<String>(
-                    items: area.map((dropDownStringItem) {
-                      return DropdownMenuItem<String>(
-                        value: dropDownStringItem,
-                        child: Text(
-                          dropDownStringItem,
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      );
-                    }).toList(),
-                    // onChanged: ((value) {
-
-                    // }),
-                    onChanged: (String? newValSelected) {
-                      setState(() {
-                        _currentareaSelected = newValSelected;
-                        _getPlayer();
-                      });
-                    },
-                    value: _currentareaSelected,
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 10.0, right: 10.0, top: 15, bottom: 0),
-              //padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: Text("Sports",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 20, color: Colors.black)),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(
-                        left: 15.0, right: 15.0, top: 15, bottom: 0),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                    width: 50,
-                  ),
-                  DropdownButton<String>(
-                    items: (widget.sportdetails).map((dropDownStringItem) {
-                      return DropdownMenuItem<String>(
-                        value: dropDownStringItem,
-                        child: Text(
-                          dropDownStringItem,
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValueSelected) {
-                      setState(() {
-                        _currentsportSelected = newValueSelected;
-                        _getPlayer();
-                      });
-                    },
-                    value: _currentsportSelected,
-                  ),
-                ],
-              ),
-            ),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(top: 20, left: 10, right: 10),
@@ -191,10 +99,9 @@ class _FindPlayerpageState extends State<FindPlayerpage> {
                         child: InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => ActivityDetail(
-                                      playeract: playeract[index],
-                                      details: widget.details,
-                                    )));
+                                builder: (_) => MyActivityDetail(
+                                    details: widget.details,
+                                    playeract: playeract[index])));
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -240,19 +147,6 @@ class _FindPlayerpageState extends State<FindPlayerpage> {
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold))
                                       .pOnly(top: 10),
-                                  // Row(
-                                  //   children: [
-                                  //     Text(
-                                  //         '${playeract[index].cost.toString()}',
-                                  //         style: TextStyle(
-                                  //             fontSize: 15,
-                                  //             fontWeight: FontWeight.bold)),
-                                  //     Icon(
-                                  //       Icons.currency_rupee_rounded,
-                                  //       color: Colors.green,
-                                  //     )
-                                  //   ],
-                                  // ).py(8),
                                   Row(
                                     children: [
                                       Icon(Icons.access_time_rounded),
@@ -296,7 +190,7 @@ class _FindPlayerpageState extends State<FindPlayerpage> {
                                       )
                                     ],
                                   ).py(8),
-                                  Text("${playeract[index].pcount}",
+                                  Text('${playeract[index].pcount.toString()}',
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold)),

@@ -1,60 +1,57 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/db%20Model/db_model.dart';
-import 'package:play_on/screens/findplayer/payment_page.dart';
+import 'package:play_on/screens/create_activity/create.dart';
 import 'package:play_on/screens/findplayer/see_all_players.dart';
 import 'package:play_on/screens/findplayer/see_all_queries.dart';
+import 'package:play_on/screens/profile/profile_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../create_activity/create.dart';
-
 // import 'h';
-class ActivityDetail extends StatefulWidget {
+class MyActivityDetail extends StatefulWidget {
   static String id = "/Activity Detail";
   final List<String> details;
   final FindPlayer playeract;
 
-  const ActivityDetail({
+  const MyActivityDetail({
     Key? key,
     required this.details,
     required this.playeract,
   }) : super(key: key);
 
   @override
-  State<ActivityDetail> createState() => _ActivityDetailState();
+  State<MyActivityDetail> createState() => _MyActivityDetailState();
 }
 
-class _ActivityDetailState extends State<ActivityDetail> {
-  TextEditingController _controllquery = TextEditingController();
-  bool isjoined = false;
-  // List querlist = [];
-  // List senderlist = [];
+class _MyActivityDetailState extends State<MyActivityDetail> {
+  TextEditingController _controllanswer = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
 
-  void setquery() {
-    widget.playeract.qanswer.add(null);
-    widget.playeract.queries.add(_controllquery.text);
-    widget.playeract.qsender.add(widget.details[0]);
-    widget.playeract.senderurl.add(widget.details[6]);
+  void setanswer(int index) {
+    widget.playeract.qanswer[index] = _controllanswer.text;
+    print(widget.playeract.qanswer[index]);
+    print(widget.playeract.qanswer);
+    print("hii");
+    print('object');
   }
 
-  Future updateQuery() async {
+  Future updateAnswer() async {
     FirebaseFirestore.instance
         .collection('User')
         .doc(widget.playeract.area)
         .collection(widget.playeract.sport!)
         .doc(widget.playeract.email)
         .update({
-      'Queries': widget.playeract.queries,
-      'QSenders': widget.playeract.qsender,
-      'Sendersurl': widget.playeract.senderurl,
-      'QAnswers': widget.playeract.qanswer
+      'QAnswers': widget.playeract.qanswer,
     });
 
     FirebaseFirestore.instance
@@ -63,10 +60,7 @@ class _ActivityDetailState extends State<ActivityDetail> {
         .collection("${loggedInUser.email}")
         .doc("${widget.playeract.activities}${widget.playeract.area}")
         .update({
-      'Queries': widget.playeract.queries,
-      'QSenders': widget.playeract.qsender,
-      'Sendersurl': widget.playeract.senderurl,
-      'QAnswers': widget.playeract.qanswer
+      'QAnswers': widget.playeract.qanswer,
     });
   }
 
@@ -100,19 +94,20 @@ class _ActivityDetailState extends State<ActivityDetail> {
         color: Color.fromRGBO(0, 77, 77, 10.0),
         child: Row(
           children: [
+            // Expanded(
+            //   child: ElevatedButton(
+            //     onPressed: () {},
+            //     style: ButtonStyle(
+            //         backgroundColor: MaterialStatePropertyAll(Colors.green)),
+            //     child: "Send Query".text.make(),
+            //   ).p8(),
+            // ),
             Expanded(
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => PaymentPage(
-                              playeract: widget.playeract,
-                              details: widget.details))));
-                },
+                onPressed: () {},
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.green)),
-                child: "Join this".text.make(),
+                child: "Game Chat".text.make(),
               ).p8(),
             ),
             // 150.widthBox,
@@ -254,6 +249,33 @@ class _ActivityDetailState extends State<ActivityDetail> {
                                         leading: "Q.".text.make(),
                                         title: Text(
                                             "${widget.playeract.queries[index]}"),
+                                        trailing: SizedBox(
+                                          height: 50,
+                                          width: 100,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              showDialog(
+                                                useSafeArea: true,
+                                                context: context,
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    _buildPopupDialog(
+                                                        context,
+                                                        "${widget.playeract.queries[index]}",
+                                                        index),
+                                              );
+                                            },
+                                            child: (widget.playeract
+                                                        .qanswer[index] ==
+                                                    null)
+                                                ? "Reply".text.make()
+                                                : "Edit".text.make(),
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStatePropertyAll(
+                                                        Colors.green)),
+                                          ).p8(),
+                                        ),
                                         subtitle: Row(
                                           children: [
                                             CircleAvatar(
@@ -322,23 +344,23 @@ class _ActivityDetailState extends State<ActivityDetail> {
                                                 Colors.green)),
                                   ).p8(),
                                 ),
-                                Expanded(
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      showDialog(
-                                        useSafeArea: true,
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            _buildPopupDialog(context),
-                                      );
-                                    },
-                                    child: "Send Query".text.make(),
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStatePropertyAll(
-                                                Colors.green)),
-                                  ).p8(),
-                                ),
+                                // Expanded(
+                                //   child: ElevatedButton(
+                                //     onPressed: () {
+                                //       showDialog(
+                                //         useSafeArea: true,
+                                //         context: context,
+                                //         builder: (BuildContext context) =>
+                                //             _buildPopupDialog(context),
+                                //       );
+                                //     },
+                                //     child: "Send Query".text.make(),
+                                //     style: ButtonStyle(
+                                //         backgroundColor:
+                                //             MaterialStatePropertyAll(
+                                //                 Colors.green)),
+                                //   ).p8(),
+                                // ),
                               ],
                             ),
                             const SizedBox(width: 8),
@@ -356,17 +378,16 @@ class _ActivityDetailState extends State<ActivityDetail> {
     );
   }
 
-  Widget _buildPopupDialog(BuildContext context) {
+  Widget _buildPopupDialog(BuildContext context, String query, int index) {
     return AlertDialog(
       contentPadding: EdgeInsets.only(top: 20, left: 20, right: 20),
-      title: const Text('Add Your Query'),
+      title: const Text('Reply this Query'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-              "Need more details? send a Query. It will help the host ${widget.playeract.name} improve the activity Instructions"),
-          buildTextField("Query", "Enter your query", _controllquery,
+          Text(query),
+          buildTextField("Reply", "Type Your Messege Here", _controllanswer,
                   TextInputType.name, () {})
               .pOnly(top: 20)
         ],
@@ -377,11 +398,13 @@ class _ActivityDetailState extends State<ActivityDetail> {
               backgroundColor: MaterialStatePropertyAll(Colors.green)),
           onPressed: () {
             setState(() {});
-            setquery();
-            updateQuery();
+            setanswer(index);
+            updateAnswer();
             Navigator.pop(context);
           },
-          child: const Text('Send Query'),
+          child: (widget.playeract.qanswer[index] == null)
+              ? Text("Reply")
+              : Text("Edit"),
         ),
       ],
     );
@@ -423,3 +446,71 @@ class _ActivityDetailState extends State<ActivityDetail> {
     );
   }
 }
+
+// Column(
+//                                     children: [
+//                                       ListTile(
+//                                         leading: "Q.".text.make(),
+//                                         title: Text(
+//                                             "${widget.playeract.queries[index]}"),
+//                                         trailing: ElevatedButton(
+//                                           onPressed: () {
+//                                             showDialog(
+//                                               useSafeArea: true,
+//                                               context: context,
+//                                               builder: (BuildContext context) =>
+//                                                   _buildPopupDialog(
+//                                                       context,
+//                                                       "${widget.playeract.queries[index]}",
+//                                                       index),
+//                                             );
+//                                           },
+//                                           child: (widget.playeract
+//                                                       .qanswer[index] ==
+//                                                   null)
+//                                               ? "Reply".text.make()
+//                                               : "Edit".text.make(),
+//                                           style: ButtonStyle(
+//                                               backgroundColor:
+//                                                   MaterialStatePropertyAll(
+//                                                       Colors.green)),
+//                                         ).p8(),
+//                                         subtitle: Row(
+//                                           children: [
+//                                             CircleAvatar(
+//                                               radius: 15,
+//                                               backgroundColor:
+//                                                   const Color(0xff476cfb),
+//                                               child: ClipOval(
+//                                                 child: SizedBox(
+//                                                   width: 30.0,
+//                                                   height: 30.0,
+//                                                   child: (widget.playeract
+//                                                                   .senderurl[
+//                                                               index] ==
+//                                                           "hi")
+//                                                       ? Image.asset(
+//                                                           'assets/noimage.png',
+//                                                           fit: BoxFit.fill,
+//                                                         )
+//                                                       : Image.network(widget
+//                                                           .playeract
+//                                                           .senderurl[index]),
+//                                                 ),
+//                                               ),
+//                                             ),
+//                                             (widget.playeract.qanswer[index] !=
+//                                                     null)
+//                                                 ? ListTile(
+//                                                     leading: "A.".text.make(),
+//                                                     title: Text(
+//                                                         "${widget.playeract.qanswer[index]}"),
+//                                                   ).py(3)
+//                                                 : SizedBox(
+//                                                     height: 0,
+//                                                   )
+//                                           ],
+//                                         ),
+//                                       ),
+//                                     ],
+//                                   );
