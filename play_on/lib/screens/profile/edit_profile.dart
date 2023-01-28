@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:play_on/controller/process_data.dart';
+import 'package:play_on/screens/create_activity/create.dart';
 import 'package:play_on/screens/setting_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -83,6 +84,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       'Role': _controllerRole.text,
       'Profileurl': profileUrl,
     });
+
   }
 
   Future upload(BuildContext context) async {

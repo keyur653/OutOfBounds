@@ -148,10 +148,15 @@ class _CreateState extends State<Create> {
       'Cost': _controllerCost.text,
       'Tplayer': _controllerTplayer.text,
       'Profileurl': widget.details[6],
-      'Players':[],
-      'Queries':[],
-      'QSenders':[],
-      'Email':"$i${loggedInUser.email}"
+      'Activities': i,
+      'PCount':1,
+      'PlayersN': [],
+      'PlayersP': [],
+      'Queries': [],
+      'QSenders': [],
+      'Sendersurl': [],
+      'QAnswers': [],
+      'Email': "$i${loggedInUser.email}"
     });
 
     FirebaseFirestore.instance
@@ -169,6 +174,15 @@ class _CreateState extends State<Create> {
       'Cost': _controllerCost.text,
       'Tplayer': _controllerTplayer.text,
       'Profileurl': widget.details[6],
+      'Activities': i,
+      'PCount':1,
+      'PlayersN': [],
+      'PlayersP': [],
+      'Queries': [],
+      'QSenders': [],
+      'Sendersurl': [],
+      'QAnswers': [],
+      'Email': "$i${loggedInUser.email}"
     });
   }
 
@@ -177,9 +191,11 @@ class _CreateState extends State<Create> {
       bottomSheet: ElevatedButton(
               style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.green)),
-              onPressed: (() {
-                i = i + 1;
-                update();
+              onPressed: (() async {
+                // setState(() {
+                i++;
+                // });
+                await update();
                 clear();
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

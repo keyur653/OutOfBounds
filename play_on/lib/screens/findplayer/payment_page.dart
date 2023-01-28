@@ -1,16 +1,29 @@
+
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:play_on/controller/user_data.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class paymentPage extends StatefulWidget {
-  const paymentPage({super.key});
+import '../../db Model/db_model.dart';
+
+class PaymentPage extends StatefulWidget {
+  final FindPlayer playeract;
+  final List<String> details;
+  const PaymentPage({
+    Key? key,
+    required this.playeract,
+    required this.details,
+  }) : super(key: key);
   static String id = "/payment_page";
   @override
-  State<paymentPage> createState() => _paymentPageState();
+  State<PaymentPage> createState() => _PaymentPageState();
 }
 
-class _paymentPageState extends State<paymentPage> {
+class _PaymentPageState extends State<PaymentPage> {
+
   static int count = 0;
   void increment() {
     setState(() {
@@ -24,6 +37,64 @@ class _paymentPageState extends State<paymentPage> {
     }
     setState(() {
       count--;
+    });
+  }
+
+
+  void addplayers() {
+    widget.playeract.playersn.add("$count${widget.details[0]}");
+    widget.playeract.playersp.add(widget.details[6]);
+  }
+
+  Future updatePlayers() async {
+    FirebaseFirestore.instance
+        .collection('User')
+        .doc(widget.playeract.area)
+        .collection(widget.playeract.sport!)
+        .doc(widget.playeract.email)
+        .update({
+      'PlayersN': widget.playeract.playersn,
+      'PlayersP': widget.playeract.playersp,
+      'PCount':widget.playeract.pcount+1+count,
+    });
+
+    FirebaseFirestore.instance
+        .collection('User')
+        .doc("myactivity")
+        .collection("${loggedInUser.email}")
+        .doc("${widget.playeract.activities}${widget.playeract.area}")
+        .update({
+      'PlayersN': widget.playeract.playersn,
+      'PlayersP': widget.playeract.playersp,
+      'PCount':widget.playeract.pcount+1+count,
+    });
+  }
+
+  Future joinedactivity() async {
+    FirebaseFirestore.instance
+        .collection('User')
+        .doc("joinactivity")
+        .collection("${loggedInUser.email}")
+        .doc("${widget.playeract.activities}${widget.playeract.area}")
+        .set({
+      'Name': widget.playeract.name,
+      'Sport': widget.playeract.sport,
+      'Area': widget.playeract.area,
+      'Date': widget.playeract.date,
+      'Time': widget.playeract.time,
+      'Access': widget.playeract.access,
+      'Cost': widget.playeract.cost,
+      'Tplayer': widget.playeract.tplayer,
+      'Profileurl': widget.playeract.profileurl,
+      'Activities': widget.playeract.activities,
+      'PCount':widget.playeract.pcount+1+count,
+      'PlayersN': widget.playeract.playersn,
+      'PlayersP': widget.playeract.playersp,
+      'Queries': widget.playeract.queries,
+      'QSenders': widget.playeract.qsender,
+      'Sendersurl': widget.playeract.senderurl,
+      'QAnswers': widget.playeract.qanswer,
+      'Email': "${widget.playeract.activities}${widget.playeract.email}"
     });
   }
 
@@ -72,7 +143,10 @@ class _paymentPageState extends State<paymentPage> {
                 'Cancellation Policy'.text.bold.xl2.make().py8(),
                 'Once paid and joined, you cannot leave the activity unless the host cancels. Incase of cancellation of the activity by the host, your money will be refunded in full to the source mode.'
                     .text
-                    .make().p8()
+                    .make()
+                    .p8()
+
+                    
               ],
             ).py20(),
           ),
@@ -80,7 +154,13 @@ class _paymentPageState extends State<paymentPage> {
       ),
       bottomNavigationBar: BottomAppBar(
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            addplayers();
+            updatePlayers();
+            joinedactivity();
+            Navigator.pop(context);
+          },
+
           child: Text('PAY INR 100'),
           style: ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(Colors.green),

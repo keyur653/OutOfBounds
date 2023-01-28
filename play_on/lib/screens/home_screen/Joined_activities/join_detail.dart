@@ -1,33 +1,29 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/db%20Model/db_model.dart';
-import 'package:play_on/screens/findplayer/payment_page.dart';
 import 'package:play_on/screens/findplayer/see_all_players.dart';
 import 'package:play_on/screens/findplayer/see_all_queries.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../create_activity/create.dart';
-
-// import 'h';
-class ActivityDetail extends StatefulWidget {
+class JoinActivityDetail extends StatefulWidget {
   static String id = "/Activity Detail";
   final List<String> details;
   final FindPlayer playeract;
 
-  const ActivityDetail({
+  const JoinActivityDetail({
     Key? key,
     required this.details,
     required this.playeract,
   }) : super(key: key);
 
   @override
-  State<ActivityDetail> createState() => _ActivityDetailState();
+  State<JoinActivityDetail> createState() => _JoinActivityDetailState();
 }
 
-class _ActivityDetailState extends State<ActivityDetail> {
-  TextEditingController _controllquery = TextEditingController();
+class _JoinActivityDetailState extends State<JoinActivityDetail> {
+  final TextEditingController _controllquery = TextEditingController();
   bool isjoined = false;
   // List querlist = [];
   // List senderlist = [];
@@ -102,17 +98,10 @@ class _ActivityDetailState extends State<ActivityDetail> {
           children: [
             Expanded(
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => PaymentPage(
-                              playeract: widget.playeract,
-                              details: widget.details))));
-                },
+                onPressed: () {},
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.green)),
-                child: "Join this".text.make(),
+                child: "Game Chat".text.make(),
               ).p8(),
             ),
             // 150.widthBox,
@@ -157,7 +146,7 @@ class _ActivityDetailState extends State<ActivityDetail> {
                             ListTile(
                               leading: Icon(Icons.location_on),
                               title: Text(
-                                "${widget.playeract.area!}",
+                                widget.playeract.area!,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               subtitle:
@@ -315,11 +304,11 @@ class _ActivityDetailState extends State<ActivityDetail> {
                                                   playeract:
                                                       widget.playeract))));
                                     },
-                                    child: "See all Queries".text.make(),
                                     style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStatePropertyAll(
                                                 Colors.green)),
+                                    child: "See all Queries".text.make(),
                                   ).p8(),
                                 ),
                                 Expanded(
@@ -332,11 +321,11 @@ class _ActivityDetailState extends State<ActivityDetail> {
                                             _buildPopupDialog(context),
                                       );
                                     },
-                                    child: "Send Query".text.make(),
                                     style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStatePropertyAll(
                                                 Colors.green)),
+                                    child: "Send Query".text.make(),
                                   ).p8(),
                                 ),
                               ],
