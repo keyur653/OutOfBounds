@@ -3,6 +3,7 @@ import 'package:play_on/login/register_page.dart';
 import 'package:play_on/login/reset_screen.dart';
 import 'package:play_on/screens/create_activity/create.dart';
 import 'package:play_on/screens/findplayer/acticity_detail.dart';
+import 'package:play_on/screens/findplayer/payment_page.dart';
 import 'package:play_on/screens/profile/edit_profile.dart';
 import 'package:play_on/screens/home_screen/home_screen.dart';
 import 'package:play_on/login/login_page.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
         RegistrationDemo.id: (context) => RegistrationDemo(),
         RegisterDemo.id: (context) => RegisterDemo(),
         ResetScreen.id: (context) => ResetScreen(),
-        // ActivityDetail.id:(context) => const ActivityDetail(),
+        paymentPage.id: (context) => paymentPage(),
+        // ActivityDetail.id:(context) => ActivityDetail(),
       },
     );
   }
