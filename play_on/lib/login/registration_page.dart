@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:play_on/controller/process_data.dart';
 import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/db%20Model/db_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:play_on/login/sport_list.dart';
-import 'package:play_on/widget/bottom_navigation.dart';
 
 class RegistrationDemo extends StatefulWidget {
   static String id = "/registration";

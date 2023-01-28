@@ -1,3 +1,4 @@
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
@@ -22,6 +23,7 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
+
   static int count = 0;
   void increment() {
     setState(() {
@@ -37,6 +39,7 @@ class _PaymentPageState extends State<PaymentPage> {
       count--;
     });
   }
+
 
   void addplayers() {
     widget.playeract.playersn.add("$count${widget.details[0]}");
@@ -142,6 +145,8 @@ class _PaymentPageState extends State<PaymentPage> {
                     .text
                     .make()
                     .p8()
+
+                    
               ],
             ).py20(),
           ),
@@ -155,6 +160,7 @@ class _PaymentPageState extends State<PaymentPage> {
             joinedactivity();
             Navigator.pop(context);
           },
+
           child: Text('PAY INR 100'),
           style: ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(Colors.green),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:play_on/login/register_page.dart';
+import 'package:play_on/login/reset_screen.dart';
 import 'package:play_on/screens/create_activity/create.dart';
 import 'package:play_on/screens/findplayer/acticity_detail.dart';
+import 'package:play_on/screens/findplayer/payment_page.dart';
 import 'package:play_on/screens/profile/edit_profile.dart';
 import 'package:play_on/screens/home_screen/home_screen.dart';
 import 'package:play_on/login/login_page.dart';
@@ -32,7 +34,9 @@ class MyApp extends StatelessWidget {
         LoginDemo.id: (context) => const LoginDemo(),
         RegistrationDemo.id: (context) => RegistrationDemo(),
         RegisterDemo.id: (context) => RegisterDemo(),
-        // ActivityDetail.id:(context) => const ActivityDetail(),
+        ResetScreen.id: (context) => ResetScreen(),
+        paymentPage.id: (context) => paymentPage(),
+        // ActivityDetail.id:(context) => ActivityDetail(),
       },
     );
   }

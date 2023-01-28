@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:play_on/login/registration_page.dart';
 
@@ -110,7 +111,7 @@ class RegisterDemoState extends State<RegisterDemo> {
                 padding: EdgeInsets.only(right: 15, left: 15),
                 Buttons.Google,
                 onPressed: () {
-                  Navigator.pushNamed(context, RegistrationDemo.id);
+                  signInWithGoogle();
                 },
               ),
             ],
@@ -118,5 +119,20 @@ class RegisterDemoState extends State<RegisterDemo> {
         ),
       ),
     );
+  }
+
+  void signInWithGoogle() async {
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    print(userCredential.user?.displayName);
+    if(userCredential!=null){
+      Navigator.pushNamed(context, RegistrationDemo.id);
+    }
   }
 }
