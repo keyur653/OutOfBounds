@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'package:play_on/screens/login_page.dart';
-import 'package:play_on/screens/registration_page.dart';
+import 'package:play_on/login/login_page.dart';
+import 'package:play_on/login/register_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'widget/button.dart';
-
 
 class WelcomeScreen extends StatefulWidget {
   static String id = "/welcome";
@@ -78,7 +76,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 bcolor: Colors.blueAccent,
                 buttonname: "Register",
                 onpressd: () {
-                  Navigator.pushNamed(context, RegistrationDemo.id);
+                  Navigator.pushNamed(context, RegisterDemo.id);
                 }).px(22)
           ],
         ),
