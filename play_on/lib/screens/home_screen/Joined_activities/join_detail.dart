@@ -4,7 +4,9 @@ import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/db%20Model/db_model.dart';
 import 'package:play_on/screens/findplayer/see_all_players.dart';
 import 'package:play_on/screens/findplayer/see_all_queries.dart';
+import 'package:play_on/screens/home_screen/group/pages/chat_page.dart';
 import 'package:play_on/screens/home_screen/group/pages/home_page.dart';
+import 'package:play_on/widget/widgets.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
@@ -39,6 +41,10 @@ class _JoinActivityDetailState extends State<JoinActivityDetail> {
     widget.playeract.queries.add(_controllquery.text);
     widget.playeract.qsender.add(widget.details[0]);
     widget.playeract.senderurl.add(widget.details[6]);
+  }
+
+  String getId(String res) {
+    return res.substring(0, res.indexOf("_"));
   }
 
   Future updateQuery() async {
@@ -100,10 +106,13 @@ class _JoinActivityDetailState extends State<JoinActivityDetail> {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                  nextScreen(
                       context,
-                      MaterialPageRoute(
-                          builder: ((context) => GroupHomePage(details: widget.details))));
+                      ChatPage(
+                        groupId: getId(widget.playeract.sgroup!),
+                        groupName: widget.playeract.sport!,
+                        userName: widget.details[0],
+                      ));
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.green)),

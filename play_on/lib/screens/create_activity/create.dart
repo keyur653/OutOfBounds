@@ -5,9 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:play_on/db%20Model/database_service.dart';
 import 'package:play_on/screens/create_activity/area.dart';
 import 'package:play_on/screens/create_activity/select_sport.dart';
 import 'package:play_on/screens/create_activity/time.dart';
+import 'package:play_on/screens/home_screen/group/pages/group_info.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../controller/user_data.dart';
@@ -32,6 +34,8 @@ class _CreateState extends State<Create> {
   String sport = "Eg.Badminton/Cricket/Football";
   String area = "Locality or Venue";
   String access = "";
+  final CollectionReference groupCollection =
+      FirebaseFirestore.instance.collection("groups");
   int i = 1;
   TextEditingController _controllerCost =
       TextEditingController(text: "No Cost");
@@ -133,6 +137,24 @@ class _CreateState extends State<Create> {
   }
 
   Future update() async {
+    DocumentReference groupDocumentReference = await groupCollection.add({
+      "groupName": sport,
+      "groupIcon": "",
+      "admin": "${loggedInUser.uid}_${widget.details[0]}",
+      "members": [],
+      "groupId": "",
+      "recentMessage": "",
+      "recentMessageSender": "",
+    });
+    // update the members
+    await groupDocumentReference.update({
+      "members":
+          FieldValue.arrayUnion(["${loggedInUser.uid}_${widget.details[0]}"]),
+      "groupId": groupDocumentReference.id,
+    });
+
+    String groupid = "${groupDocumentReference.id}_$sport";
+
     FirebaseFirestore.instance
         .collection('User')
         .doc(area)
@@ -149,14 +171,16 @@ class _CreateState extends State<Create> {
       'Tplayer': _controllerTplayer.text,
       'Profileurl': widget.details[6],
       'Activities': i,
-      'PCount':1,
+      'PCount': 1,
+      'Sgroup': groupid,
+      'JPlayers':[],
       'PlayersN': [],
       'PlayersP': [],
       'Queries': [],
       'QSenders': [],
       'Sendersurl': [],
       'QAnswers': [],
-      'Email': "$i${loggedInUser.email}"
+      'Email': loggedInUser.email
     });
 
     FirebaseFirestore.instance
@@ -175,7 +199,9 @@ class _CreateState extends State<Create> {
       'Tplayer': _controllerTplayer.text,
       'Profileurl': widget.details[6],
       'Activities': i,
-      'PCount':1,
+      'PCount': 1,
+      'Sgroup': groupid,
+      'JPlayers':[],
       'PlayersN': [],
       'PlayersP': [],
       'Queries': [],

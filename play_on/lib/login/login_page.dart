@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/login/register_page.dart';
 import 'package:play_on/login/reset_screen.dart';
-import 'package:play_on/screens/profile/profile_screen.dart';
-import 'package:play_on/login/registration_page.dart';
 
 import '../controller/process_data.dart';
 

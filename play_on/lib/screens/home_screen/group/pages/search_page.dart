@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:play_on/db%20Model/db_model.dart';
 import 'package:play_on/screens/home_screen/group/helper/helper_function.dart';
 import 'package:play_on/screens/home_screen/group/pages/chat_page.dart';
-import 'package:play_on/screens/home_screen/group/pages/profile_page.dart';
 import 'package:play_on/screens/home_screen/group/pages/search_page.dart';
 import 'package:play_on/db%20Model/database_service.dart';
 import 'package:play_on/widget/group_tile.dart';

@@ -1,11 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:collection';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/db%20Model/db_model.dart';
 import 'package:play_on/screens/findplayer/payment_page.dart';
 import 'package:play_on/screens/findplayer/see_all_players.dart';
 import 'package:play_on/screens/findplayer/see_all_queries.dart';
+import 'package:play_on/widget/widgets.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../create_activity/create.dart';
@@ -28,7 +32,6 @@ class ActivityDetail extends StatefulWidget {
 
 class _ActivityDetailState extends State<ActivityDetail> {
   TextEditingController _controllquery = TextEditingController();
-  bool isjoined = false;
   // List querlist = [];
   // List senderlist = [];
   @override
@@ -103,16 +106,26 @@ class _ActivityDetailState extends State<ActivityDetail> {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => PaymentPage(
-                              playeract: widget.playeract,
-                              details: widget.details))));
+                  (!widget.playeract.jplayer.contains(loggedInUser.uid))
+                      ? {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => PaymentPage(
+                                      playeract: widget.playeract,
+                                      details: widget.details)))),
+                        }
+                      : {
+                          showSnackbar(
+                              context, Colors.green, "you already joined")
+                        };
+                  setState(() {});
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.green)),
-                child: "Join this".text.make(),
+                child: (!widget.playeract.jplayer.contains(loggedInUser.uid))
+                    ? "Join this".text.make()
+                    : "Joined".text.make(),
               ).p8(),
             ),
             // 150.widthBox,

@@ -92,7 +92,7 @@ class _SportlistState extends State<Sportlist> {
           backgroundColor: Colors.white,
           leading: TextButton(
               onPressed: (() {}),
-              child: Icon(Icons.arrow_back_ios_new_rounded)),
+              child: const Icon(Icons.arrow_back_ios_new_rounded)),
           actions: [
             ElevatedButton(
                     onPressed: (() {
@@ -101,10 +101,10 @@ class _SportlistState extends State<Sportlist> {
                         MaterialPageRoute(builder: (_) => ProcessData(widget.role)),
                       );
                     }),
-                    child: Text("done"))
+                    child: const Text("done"))
                 .pOnly(top: 8, bottom: 8)
                 .w24(context),
-            SizedBox(
+            const SizedBox(
               width: 10,
             )
           ],
@@ -114,7 +114,7 @@ class _SportlistState extends State<Sportlist> {
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.rectangle,
                 color: Colors.green,
               ),
@@ -127,7 +127,7 @@ class _SportlistState extends State<Sportlist> {
                     });
                   })),
             ),
-            Divider(
+            const Divider(
               endIndent: 8.0,
             ),
             Wrap(

@@ -7,6 +7,8 @@ import 'package:play_on/login/registration_page.dart';
 
 class RegisterDemo extends StatefulWidget {
   static String id = "/Register";
+
+  const RegisterDemo({super.key});
   @override
   RegisterDemoState createState() => RegisterDemoState();
 }
@@ -104,11 +106,11 @@ class RegisterDemoState extends State<RegisterDemo> {
                 ),
               ),
               // Divider(),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               SignInButton(
-                padding: EdgeInsets.only(right: 15, left: 15),
+                padding: const EdgeInsets.only(right: 15, left: 15),
                 Buttons.Google,
                 onPressed: () {
                   signInWithGoogle();
