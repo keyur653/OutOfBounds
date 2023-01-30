@@ -46,65 +46,67 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         minimum: const EdgeInsets.only(top: 10),
-        child: Column(
-          children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: (widget.details[6]=="hi")? AssetImage('images/profile_image.jpg'): NetworkImage(widget.details[6]) as ImageProvider,
-            ),
-            Text(
-              widget.details[0],
-              style: const TextStyle(
-                fontSize: 40.0,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontFamily: "Pacifico",
+        child: ListView(children: [
+          Column(
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: (widget.details[6]=="hi")? AssetImage('images/profile_image.jpg'): NetworkImage(widget.details[6]) as ImageProvider,
               ),
-            ),
-            const Text(
-              "Activities: 0",
-              style: TextStyle(
-                  fontSize: 30,
+              Text(
+                widget.details[0],
+                style: const TextStyle(
+                  fontSize: 40.0,
                   color: Colors.black,
-                  letterSpacing: 2.5,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "Source Sans Pro"),
-            ),
-            const SizedBox(
-              height: 20,
-              width: 200,
-              child: Divider(
-                color: Colors.white,
+                  fontFamily: "Pacifico",
+                ),
               ),
-            ),
-
-            // we will be creating a new widget name info carrd
-
-            InfoCard(
-                text: widget.details[1], icon: Icons.phone, onPressed: () async { }),
-            InfoCard(
-              text: widget.details[2],
-              icon: Icons.person,
-              onPressed: () {},
-            ),
-            InfoCard(
-                text: widget.details[3],
-                icon: widget.details[3] == 'Male'
-                    ? Icons.male_rounded
-                    : Icons.female_rounded,
-                onPressed: () async {}),
-            InfoCard(
-                text: widget.details[4],
-                icon: Icons.location_city,
-                onPressed: () async {}),
-            InfoCard(
-                text: widget.details[5], icon: Icons.email, onPressed: () async {}),
-            InfoCard(
-              text: "${widget.sportdetails[0]} , ${widget.sportdetails[1]}",
-              icon: Icons.sports,
-              onPressed: () {},
-            )
-          ],
+              const Text(
+                "Activities: 0",
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.black,
+                    letterSpacing: 2.5,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Source Sans Pro"),
+              ),
+              const SizedBox(
+                height: 20,
+                width: 200,
+                child: Divider(
+                  color: Colors.white,
+                ),
+              ),
+        
+              // we will be creating a new widget name info carrd
+              
+              InfoCard(
+                  text: widget.details[1], icon: Icons.phone, onPressed: () async { }),
+              InfoCard(
+                text: widget.details[2],
+                icon: Icons.person,
+                onPressed: () {},
+              ),
+              InfoCard(
+                  text: widget.details[3],
+                  icon: widget.details[3] == 'Male'
+                      ? Icons.male_rounded
+                      : Icons.female_rounded,
+                  onPressed: () async {}),
+              InfoCard(
+                  text: widget.details[4],
+                  icon: Icons.location_city,
+                  onPressed: () async {}),
+              InfoCard(
+                  text: widget.details[5], icon: Icons.email, onPressed: () async {}),
+              InfoCard(
+                text: "${widget.sportdetails[0]} , ${widget.sportdetails[1]}",
+                icon: Icons.sports,
+                onPressed: () {},
+              )
+            ],
+          ),]
         ),
       ),
     );
