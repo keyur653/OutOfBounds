@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+List<String> detaillist = [];
+
 class PlayerProfile {
   String? name, mbnumber, role, gender, area, email, sport;
 
@@ -18,7 +20,7 @@ class PlayerProfile {
 }
 
 class FindPlayer {
-  int activities,pcount;
+  int activities, pcount;
   String? name,
       area,
       sport,
@@ -28,9 +30,10 @@ class FindPlayer {
       time,
       tplayer,
       profileurl,
+      sgroup,
       email;
 
-  List  queries, qsender, senderurl, qanswer,playersn,playersp;
+  List queries, qsender, senderurl, qanswer, playersn, playersp,jplayer;
 
   FindPlayer(
       this.area,
@@ -49,6 +52,8 @@ class FindPlayer {
       this.qanswer,
       this.playersn,
       this.playersp,
+      this.jplayer,
+      this.sgroup,
       this.email);
 
   FindPlayer.fromSnapshot(DocumentSnapshot snapshot)
@@ -69,7 +74,9 @@ class FindPlayer {
         qanswer = snapshot.get('QAnswers'),
         playersn = snapshot.get('PlayersN'),
         playersp = snapshot.get('PlayersP'),
-        email = snapshot.get('Email').toString();
+        jplayer = snapshot.get('JPlayers'),
+        email = snapshot.get('Email').toString(),
+        sgroup = snapshot.get('Sgroup').toString();
 }
 
 class Contents {

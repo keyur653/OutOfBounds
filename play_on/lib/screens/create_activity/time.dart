@@ -14,8 +14,8 @@ class Time extends StatefulWidget {
 
 class _TimeState extends State<Time> {
   TimeOfDay currentime = TimeOfDay.now();
-  TextEditingController _controller1 = TextEditingController();
-  TextEditingController _controller2 = TextEditingController();
+  final TextEditingController _controller1 = TextEditingController();
+  final TextEditingController _controller2 = TextEditingController();
   String stime = "12:01";
   String etime = "16:01";
 

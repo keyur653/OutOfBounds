@@ -18,7 +18,7 @@ class _ResetScreenState extends State<ResetScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Forget Password'),
+        title: const Text('Forget Password'),
         backgroundColor: Colors.green,
       ),
       backgroundColor: Colors.white,
@@ -78,9 +78,9 @@ class _ResetScreenState extends State<ResetScreen> {
                     },
                     minWidth: 200.0,
                     height: 42.0,
-                    child: Text(
+                    child: const Text(
                       'Send Request',
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),

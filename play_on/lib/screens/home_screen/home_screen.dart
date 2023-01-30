@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:play_on/screens/home_screen/Joined_activities/join_act.dart';
 import 'package:play_on/screens/home_screen/design.dart';
+import 'package:play_on/screens/home_screen/group/pages/home_page.dart';
 import 'package:play_on/screens/home_screen/my_activities/my_activity.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,13 +33,19 @@ class _HomeScreenState extends State<HomeScreen> {
             details: widget.details, sportdetails: widget.sportdetails))));
   }
 
+  void groups() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: ((context) => GroupHomePage(details: widget.details))));
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView.count(
         crossAxisCount: 2,
         children: [
           Design(text: "My activity", ontap: myactivity),
-          Design(text: "Joined Activities", ontap: joinactivity)
+          Design(text: "Joined Activities", ontap: joinactivity),
+          Design(text: "Groups", ontap: groups)
         ],
       ),
     );

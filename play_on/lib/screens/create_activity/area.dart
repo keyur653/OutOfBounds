@@ -22,14 +22,14 @@ class _AreaState extends State<Area> {
             onPressed: (() {
               Navigator.pop(context);
             }),
-            child: Icon(Icons.arrow_back_ios_new_rounded)),
+            child: const Icon(Icons.arrow_back_ios_new_rounded)),
         title: "Select Area".text.black.make(),
       ),
       body: Column(children: [
         buildTextField("Area", "Eg.Borivali", () {}, _controller)
             .pOnly(top: 80, left: 15, right: 15),
         ElevatedButton(
-                style: ButtonStyle(
+                style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.green)),
                 onPressed: (() {
                   Navigator.pop(context, "${_controller.text}".trim());
@@ -50,20 +50,20 @@ class _AreaState extends State<Area> {
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
             contentPadding:
-                EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.auto,
             hintText: placeholder,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey, width: 2.0),
               // borderRadius: BorderRadius.all(Radius.circular(20.0)),
             ),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.teal, width: 2.0),
               // borderRadius: BorderRadius.all(Radius.circular(20.0)),
             ),

@@ -22,7 +22,7 @@ class _AllPlayersState extends State<AllPlayers> {
         backgroundColor: Colors.white,
         title: Text(
           'Players(${widget.playeract.pcount})',
-          style: TextStyle(
+          style: const TextStyle(
               fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
         ),
         elevation: 0.0,
@@ -30,7 +30,7 @@ class _AllPlayersState extends State<AllPlayers> {
           onTap: (() {
             Navigator.pop(context);
           }),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.green,
           ),
@@ -58,11 +58,11 @@ class _AllPlayersState extends State<AllPlayers> {
             ),
             title: Text(
               widget.playeract.name.toString(),
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
-            trailing: Text("Host"),
+            trailing: const Text("Host"),
           ),
-          Divider(),
+          const Divider(),
           ListView.separated(
               shrinkWrap: true,
               itemBuilder: ((context, index) {
@@ -84,12 +84,12 @@ class _AllPlayersState extends State<AllPlayers> {
                     ),
                   ),
                   title:
-                      Text("${widget.playeract.playersn[index]}".substring(1)),
+                      Text(widget.playeract.playersn[index].substring(1)),
                   subtitle:
-                      (widget.playeract.name.toString().substring(0, 1) != "0")
+                      (widget.playeract.playersn[index].substring(0, 1) != "0")
                           ? Row(
                               children: [
-                                Icon(Icons.handshake_outlined),
+                                const Icon(Icons.handshake_outlined),
                                 Text(
                                     "+${widget.playeract.playersn[index].substring(0, 1)} More Joined")
                               ],
@@ -98,7 +98,7 @@ class _AllPlayersState extends State<AllPlayers> {
                 );
               }),
               separatorBuilder: (context, index) {
-                return Divider();
+                return const Divider();
               },
               itemCount: widget.playeract.playersn.length),
           const SizedBox(width: 8),

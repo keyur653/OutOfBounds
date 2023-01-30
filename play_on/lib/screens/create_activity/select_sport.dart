@@ -1,8 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:play_on/controller/process_data.dart';
-import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/db%20Model/db_model.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -81,20 +78,20 @@ class _SelectSportState extends State<SelectSport> {
               onPressed: (() {
                 Navigator.pop(context);
               }),
-              child: Icon(Icons.arrow_back_ios_new_rounded)),
+              child: const Icon(Icons.arrow_back_ios_new_rounded)),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.rectangle,
                 color: Colors.green,
               ),
               title: "Team Sports".text.bold.make(),
             ),
-            Divider(
+            const Divider(
               endIndent: 8.0,
             ),
             Wrap(

@@ -20,7 +20,7 @@ class _AllQueriesState extends State<AllQueries> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           'Queries',
           style: TextStyle(
               fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
@@ -30,7 +30,7 @@ class _AllQueriesState extends State<AllQueries> {
           onTap: (() {
             Navigator.pop(context);
           }),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.green,
           ),
@@ -67,7 +67,7 @@ class _AllQueriesState extends State<AllQueries> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text("${widget.playeract.qsender[index]}")
@@ -79,14 +79,14 @@ class _AllQueriesState extends State<AllQueries> {
                             leading: "A.".text.make(),
                             title: Text("${widget.playeract.qanswer[index]}"),
                           ).py(8)
-                        : SizedBox(
+                        : const SizedBox(
                             height: 0,
                           )
                   ],
                 );
               }),
               separatorBuilder: (context, index) {
-                return Divider();
+                return const Divider();
               },
               itemCount: widget.playeract.queries.length),
           const SizedBox(width: 8),
