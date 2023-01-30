@@ -109,7 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   icon: Icons.email,
                   onPressed: () async {}),
               InfoCard(
-                text: "${widget.sportdetails[0]} , ${widget.sportdetails[1]}",
+                text: "${widget.sportdetails[0]} , ${widget.sportdetails[1]},${widget.sportdetails[2]},${widget.sportdetails[3]}",
                 icon: Icons.sports,
                 onPressed: () {},
               )
@@ -140,12 +140,15 @@ class InfoCard extends StatelessWidget {
             icon,
             color: Colors.teal,
           ),
-          title: Text(
-            text,
-            style: const TextStyle(
-                color: Colors.teal,
-                fontSize: 20,
-                fontFamily: "Source Sans Pro"),
+          title: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+              text,
+              style: const TextStyle(
+                  color: Colors.teal,
+                  fontSize: 20,
+                  fontFamily: "Source Sans Pro"),
+            ),
           ),
         ),
       ),
