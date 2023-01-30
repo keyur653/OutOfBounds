@@ -38,7 +38,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => EditProfilePage(details: widget.details, sportdetails: widget.sportdetails)));
+                  builder: (BuildContext context) => EditProfilePage(
+                      details: widget.details,
+                      sportdetails: widget.sportdetails)));
             },
           ),
         ],
@@ -51,7 +53,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               CircleAvatar(
                 radius: 50,
-                backgroundImage: (widget.details[6]=="hi")? AssetImage('images/profile_image.jpg'): NetworkImage(widget.details[6]) as ImageProvider,
+                backgroundImage: (widget.details[6] == "hi")
+                    ? AssetImage('images/profile_image.jpg')
+                    : NetworkImage(widget.details[6]) as ImageProvider,
               ),
               Text(
                 widget.details[0],
@@ -78,11 +82,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   color: Colors.white,
                 ),
               ),
-        
+
               // we will be creating a new widget name info carrd
-              
+
               InfoCard(
-                  text: widget.details[1], icon: Icons.phone, onPressed: () async { }),
+                  text: widget.details[1],
+                  icon: Icons.phone,
+                  onPressed: () async {}),
               InfoCard(
                 text: widget.details[2],
                 icon: Icons.person,
@@ -99,15 +105,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   icon: Icons.location_city,
                   onPressed: () async {}),
               InfoCard(
-                  text: widget.details[5], icon: Icons.email, onPressed: () async {}),
+                  text: widget.details[5],
+                  icon: Icons.email,
+                  onPressed: () async {}),
               InfoCard(
                 text: "${widget.sportdetails[0]} , ${widget.sportdetails[1]}",
                 icon: Icons.sports,
                 onPressed: () {},
               )
             ],
-          ),]
-        ),
+          ),
+        ]),
       ),
     );
   }

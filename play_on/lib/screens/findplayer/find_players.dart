@@ -47,7 +47,6 @@ class _FindPlayerpageState extends State<FindPlayerpage> {
       setState(() {
         for (var i = 0; i < event.docs.length; i++) {
           playeract.add(FindPlayer.fromSnapshot(event.docs[i]));
-          print(playeract);
         }
       });
     });

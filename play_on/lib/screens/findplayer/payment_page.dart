@@ -1,10 +1,11 @@
-
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:play_on/controller/user_data.dart';
+import 'package:play_on/db%20Model/database_service.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../db Model/db_model.dart';
@@ -23,8 +24,10 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
-
   static int count = 0;
+  late String groupid;
+  final CollectionReference groupCollection =
+      FirebaseFirestore.instance.collection("groups");
   void increment() {
     setState(() {
       count++;
@@ -40,33 +43,51 @@ class _PaymentPageState extends State<PaymentPage> {
     });
   }
 
+  String getId(String res) {
+    return res.substring(0, res.indexOf("_"));
+  }
+
+  String getName(String res) {
+    return res.substring(res.indexOf("_") + 1);
+  }
 
   void addplayers() {
     widget.playeract.playersn.add("$count${widget.details[0]}");
     widget.playeract.playersp.add(widget.details[6]);
+    widget.playeract.jplayer.add(loggedInUser.uid);
   }
 
   Future updatePlayers() async {
+    groupid = getId(widget.playeract.sgroup!);
+    print(groupid);
+
+    FirebaseFirestore.instance.collection("groups").doc(groupid).update({
+      'members':
+          FieldValue.arrayUnion(["${loggedInUser.uid}_${widget.details[0]}"])
+    });
+
     FirebaseFirestore.instance
         .collection('User')
         .doc(widget.playeract.area)
         .collection(widget.playeract.sport!)
-        .doc(widget.playeract.email)
+        .doc("${widget.playeract.activities}${widget.playeract.email}")
         .update({
       'PlayersN': widget.playeract.playersn,
+      'JPlayers':widget.playeract.jplayer,
       'PlayersP': widget.playeract.playersp,
-      'PCount':widget.playeract.pcount+1+count,
+      'PCount': widget.playeract.pcount + 1 + count,
     });
 
     FirebaseFirestore.instance
         .collection('User')
         .doc("myactivity")
-        .collection("${loggedInUser.email}")
+        .collection("${widget.playeract.email}")
         .doc("${widget.playeract.activities}${widget.playeract.area}")
         .update({
       'PlayersN': widget.playeract.playersn,
+      'JPlayers':widget.playeract.jplayer,
       'PlayersP': widget.playeract.playersp,
-      'PCount':widget.playeract.pcount+1+count,
+      'PCount': widget.playeract.pcount + 1 + count,
     });
   }
 
@@ -87,7 +108,9 @@ class _PaymentPageState extends State<PaymentPage> {
       'Tplayer': widget.playeract.tplayer,
       'Profileurl': widget.playeract.profileurl,
       'Activities': widget.playeract.activities,
-      'PCount':widget.playeract.pcount+1+count,
+      'Sgroup': widget.playeract.sgroup,
+      'PCount': widget.playeract.pcount + 1 + count,
+      'JPlayers':widget.playeract.jplayer,
       'PlayersN': widget.playeract.playersn,
       'PlayersP': widget.playeract.playersp,
       'Queries': widget.playeract.queries,
@@ -105,35 +128,35 @@ class _PaymentPageState extends State<PaymentPage> {
         backgroundColor: Colors.green,
         leading:
             IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
-        title: Text('Pay & Join'),
+        title: const Text('Pay & Join'),
       ),
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10),
             child: Card(
               elevation: 10,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text('NO OF PLAYERS:'),
+                  const Text('NO OF PLAYERS:'),
                   IconButton(
                       onPressed: () {
                         decrement();
                       },
-                      icon: Icon(Icons.remove)),
+                      icon: const Icon(Icons.remove)),
                   Text('$count'),
                   IconButton(
                       onPressed: () {
                         increment();
                       },
-                      icon: Icon(Icons.add))
+                      icon: const Icon(Icons.add))
                 ],
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 20),
             child: "AMOUNT: INR 100".text.bold.xl2.green700.make().py32(),
           ),
           Card(
@@ -145,8 +168,6 @@ class _PaymentPageState extends State<PaymentPage> {
                     .text
                     .make()
                     .p8()
-
-                    
               ],
             ).py20(),
           ),
@@ -160,9 +181,8 @@ class _PaymentPageState extends State<PaymentPage> {
             joinedactivity();
             Navigator.pop(context);
           },
-
-          child: Text('PAY INR 100'),
-          style: ButtonStyle(
+          child: const Text('PAY INR 100'),
+          style: const ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(Colors.green),
           ),
         ).p8(),

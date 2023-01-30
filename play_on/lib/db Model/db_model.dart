@@ -30,9 +30,10 @@ class FindPlayer {
       time,
       tplayer,
       profileurl,
+      sgroup,
       email;
 
-  List queries, qsender, senderurl, qanswer, playersn, playersp;
+  List queries, qsender, senderurl, qanswer, playersn, playersp,jplayer;
 
   FindPlayer(
       this.area,
@@ -51,6 +52,8 @@ class FindPlayer {
       this.qanswer,
       this.playersn,
       this.playersp,
+      this.jplayer,
+      this.sgroup,
       this.email);
 
   FindPlayer.fromSnapshot(DocumentSnapshot snapshot)
@@ -71,7 +74,9 @@ class FindPlayer {
         qanswer = snapshot.get('QAnswers'),
         playersn = snapshot.get('PlayersN'),
         playersp = snapshot.get('PlayersP'),
-        email = snapshot.get('Email').toString();
+        jplayer = snapshot.get('JPlayers'),
+        email = snapshot.get('Email').toString(),
+        sgroup = snapshot.get('Sgroup').toString();
 }
 
 class Contents {

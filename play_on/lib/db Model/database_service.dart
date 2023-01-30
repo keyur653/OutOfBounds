@@ -16,7 +16,7 @@ class DatabaseService {
       "fullName": fullName,
       "email": email,
       "groups": [],
-      "sgroups":[],
+      "sgroups": [],
       "profilePic": "",
       "uid": uid,
     });
@@ -74,11 +74,7 @@ class DatabaseService {
       "groupId": groupDocumentReference.id,
     });
 
-    DocumentReference userDocumentReference = userCollection.doc(uid);
-    return await userDocumentReference.update({
-      "sgroups":
-          FieldValue.arrayUnion(["${groupDocumentReference.id}_$groupName"])
-    });
+    return "${groupDocumentReference.id}_$groupName";
   }
 
   // getting the chats
@@ -146,6 +142,17 @@ class DatabaseService {
         "members": FieldValue.arrayUnion(["${uid}_$userName"])
       });
     }
+  }
+
+  Future toggleSGroupJoin(String groupId, String userName) async {
+    // doc reference
+    DocumentReference groupDocumentReference = groupCollection.doc(groupId);
+
+    // if user has our groups -> then remove then or also in other part re join
+
+    await groupDocumentReference.update({
+      "members": FieldValue.arrayRemove(["${uid}_$userName"])
+    });
   }
 
   // send message
