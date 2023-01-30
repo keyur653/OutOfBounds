@@ -8,6 +8,7 @@ import 'package:play_on/login/login_page.dart';
 import 'package:play_on/screens/profile/profile_screen.dart';
 import 'package:play_on/login/registration_page.dart';
 import 'package:play_on/login/sport_list.dart';
+import 'package:play_on/themes/theme_page.dart';
 import 'package:play_on/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:play_on/widget/bottom_navigation.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: Mythemes.lightTheme,
       initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:play_on/controller/user_data.dart';
+import 'package:play_on/db%20Model/db_model.dart';
 import 'package:play_on/widget/bottom_navigation.dart';
 
 class ProcessData extends StatefulWidget {
@@ -45,6 +46,7 @@ class _ProcessDataState extends State<ProcessData> {
                   sportdetails: sportdetails,
                 )),
       );
+      detaillist = details;
     });
     return details;
   }

@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+List<String> detaillist = [];
+
 class PlayerProfile {
   String? name, mbnumber, role, gender, area, email, sport;
 
@@ -18,7 +20,7 @@ class PlayerProfile {
 }
 
 class FindPlayer {
-  int activities,pcount;
+  int activities, pcount;
   String? name,
       area,
       sport,
@@ -30,7 +32,7 @@ class FindPlayer {
       profileurl,
       email;
 
-  List  queries, qsender, senderurl, qanswer,playersn,playersp;
+  List queries, qsender, senderurl, qanswer, playersn, playersp;
 
   FindPlayer(
       this.area,

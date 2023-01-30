@@ -5,7 +5,9 @@ import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/db%20Model/db_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:play_on/login/sport_list.dart';
+import 'package:play_on/db%20Model/database_service.dart';
 import 'package:play_on/widget/bottom_navigation.dart';
+
 
 class RegistrationDemo extends StatefulWidget {
   static String id = "/registration";
@@ -55,7 +57,11 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
       'Role': role!.trim(),
       'Profileurl':"hi"
     });
+
+    await DatabaseService(uid: loggedInUser.uid).savingUserData(name.toString(), loggedInUser.email.toString());
   }
+
+
 
   Widget build(BuildContext context) {
     return Container(
