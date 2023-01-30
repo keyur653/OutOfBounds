@@ -1,10 +1,11 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/db%20Model/db_model.dart';
 import 'package:play_on/screens/findplayer/see_all_players.dart';
 import 'package:play_on/screens/findplayer/see_all_queries.dart';
+import 'package:play_on/screens/home_screen/group/pages/home_page.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 
 class JoinActivityDetail extends StatefulWidget {
@@ -98,7 +99,12 @@ class _JoinActivityDetailState extends State<JoinActivityDetail> {
           children: [
             Expanded(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => GroupHomePage(details: widget.details))));
+                },
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.green)),
                 child: "Game Chat".text.make(),

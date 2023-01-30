@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:play_on/db%20Model/db_model.dart';
 import 'package:play_on/screens/findplayer/acticity_detail.dart';

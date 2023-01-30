@@ -2,7 +2,10 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/screens/profile/edit_profile.dart';
+
+import '../../db Model/database_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   static String id = "/profile";
@@ -79,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               // we will be creating a new widget name info carrd
               
               InfoCard(
-                  text: widget.details[1], icon: Icons.phone, onPressed: () async {}),
+                  text: widget.details[1], icon: Icons.phone, onPressed: () async { }),
               InfoCard(
                 text: widget.details[2],
                 icon: Icons.person,
