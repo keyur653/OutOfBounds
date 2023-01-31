@@ -84,7 +84,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
       'Role': _controllerRole.text,
       'Profileurl': profileUrl,
     });
-
   }
 
   Future upload(BuildContext context) async {
@@ -145,14 +144,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
   }
 
-  ImageProvider setimage(){
+  ImageProvider setimage() {
     if (_image != null) {
-      return FileImage(_image!) ;
-    }
-     else if (widget.details[6]!="hi") {
+      return FileImage(_image!);
+    } else if (widget.details[6] != "hi") {
       return NetworkImage(widget.details[6]);
-    }
-   else {
+    } else {
       return AssetImage('images/profile_image.jpg');
     }
   }
@@ -218,13 +215,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           ],
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image:setimage()
-                              
+                              fit: BoxFit.cover, image: setimage()
+
                               // (_image != null)
                               //     ? FileImage(_image!) as ImageProvider
                               //     : AssetImage('images/profile_image.jpg')
-                                  )),
+                              )),
                     ),
                     Positioned(
                         bottom: 0,
