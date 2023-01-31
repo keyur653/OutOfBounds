@@ -52,18 +52,18 @@ class _ActivityDetailState extends State<ActivityDetail> {
         .collection('User')
         .doc(widget.playeract.area)
         .collection(widget.playeract.sport!)
-        .doc(widget.playeract.email)
+        .doc("${widget.playeract.activities}${widget.playeract.email}")
         .update({
       'Queries': widget.playeract.queries,
       'QSenders': widget.playeract.qsender,
       'Sendersurl': widget.playeract.senderurl,
       'QAnswers': widget.playeract.qanswer
     });
-
+    print(widget.playeract.email);
     FirebaseFirestore.instance
         .collection('User')
         .doc("myactivity")
-        .collection("${loggedInUser.email}")
+        .collection("${widget.playeract.email}")
         .doc("${widget.playeract.activities}${widget.playeract.area}")
         .update({
       'Queries': widget.playeract.queries,

@@ -155,12 +155,13 @@ class _CreateState extends State<Create> {
 
     String groupid = "${groupDocumentReference.id}_$sport";
 
-    FirebaseFirestore.instance
+    var ref1 = FirebaseFirestore.instance
         .collection('User')
         .doc(area)
         .collection(sport)
-        .doc("$i${loggedInUser.email}")
-        .set({
+        .doc("$i${loggedInUser.email}");
+
+    await ref1.set({
       'Name': widget.details[0],
       'Sport': sport,
       'Area': area,
@@ -173,7 +174,7 @@ class _CreateState extends State<Create> {
       'Activities': i,
       'PCount': 1,
       'Sgroup': groupid,
-      'JPlayers':[],
+      'JPlayers': [],
       'PlayersN': [],
       'PlayersP': [],
       'Queries': [],
@@ -183,12 +184,13 @@ class _CreateState extends State<Create> {
       'Email': loggedInUser.email
     });
 
-    FirebaseFirestore.instance
+    var ref2 = FirebaseFirestore.instance
         .collection('User')
         .doc("myactivity")
         .collection("${loggedInUser.email}")
-        .doc("$i$area")
-        .set({
+        .doc("$i$area");
+
+    await ref2.set({
       'Name': widget.details[0],
       'Sport': sport,
       'Area': area,
@@ -201,7 +203,7 @@ class _CreateState extends State<Create> {
       'Activities': i,
       'PCount': 1,
       'Sgroup': groupid,
-      'JPlayers':[],
+      'JPlayers': [],
       'PlayersN': [],
       'PlayersP': [],
       'Queries': [],
