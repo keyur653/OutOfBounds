@@ -1,9 +1,8 @@
 <h1 align="center">
   <a href="https://github.com/keyur653/OutOfBounds">
-    <img src="https://res.cloudinary.com/dn6vz8exv/image/upload/v1665664791/inh_zzefoy.jpg" alt="CoC Inheritance 2022" width="500" height="166">
+    <img src="https://en.bloggif.com/tmp/460426d8723c9428b283c46d5f1363c5/text.gif?1675343247" width="500" height="166">
   </a>
   <br>
-  Play On!
 </h1>
 
 <div align="center">
@@ -128,19 +127,14 @@ In this, the user can find turfs as per their requirement.
 
 
 ## 👨‍💻Team Members
-
-Add names of your team members with their emails and links to their GitHub accounts
-
 - [Akshay Potkhule](https://github.com/akshay-git20): akshaypotkhule123@gmail.com 
 - [Nikhil Soni](https://github.com/niksoni2910): nikhilsoni2910@gmail.com 
 - [Keyur Doshi](https://github.com/keyur653): keyurdoshi2270@gmail.com 
 
 ## 👨‍🏫Mentors
 
-Add names of your mentors with their emails and links to their GitHub accounts
-
-- [Nirbhay Hanjura](https://github.com/botnirbhay)
-- [Tushar Mali](https://github.com/7-USH)
+- [Nirbhay Hanjura](https://github.com/botnirbhay): hanjuranirbhay@gmail.com
+- [Tushar Mali](https://github.com/7-USH): tush1245@gmail.com
 
 ## 📱Screenshots
 Add a few screenshots for parts of the project completed till now to give the viewer a quick idea of what your project looks like. After all, a picture speaks a thousand words.
