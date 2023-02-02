@@ -31,9 +31,8 @@
 
 ## 📝Description
 
-Add your **project description** here. Your project description should cover how your website/app works. That way you can convey what your project is without the need for anyone to view the code. A more *detailed README* in your project repository is encouraged, which can include build and use instructions etc.
-
-1. Include features and their usecases in bullet points
+Play On! is a cross-platform application designed for sports enthusiasts. Players who are bored and want to connect and play with different players in their locality can just login on our app and find players that match their requirements like sports, timing and area. 
+Not just Players, even Turfs and Playgrounds can be found on our app easily.
 
 ## 🔗Links
 
@@ -55,29 +54,78 @@ Add your **project description** here. Your project description should cover how
 List down all the fully implemented features in your project
 
 - [x] Find Players
-- [x] Find Turfs 
+- [x] Group Chat 
+- [x] Player Chat 
+- [x] Create Activity
+- [x] Google User Authentication
+- [x] Forgot Password
+- [x] Edit Profile
 
 List down all the partially implemented features in your project
 
 - [ ] Book Turf 
+- [ ] Find Turf
 - [ ] Profile Building
 
 ## 🔮Future Scope
 
-- Future Feature 1
-- Future Feature 2
+- Push Notifications to the one who creates an activity everytime someone joins it.
+- Player history showing every activity joined by them.
+- Rate and Review a player.
 
 ## 💸Applications
 
->How can your project do its part in solving a real-life problem? What are its possible applications? Can it be monetized? Describe here.
+>###### How can your project do its part in solving a real-life problem? 
+>Not able to find someone to play with and get exhausted with boredom OR get disqualified from a tournament due a last-minute withdrawal of a player is a huge problem for many . We have brought a one-stop solution for that.
+>Sometimes you may have players but don't have a place to play, we have also brought a solution for that.
+>###### Can it be monetized? 
+>YES, It can be monetized by running ads as well as get a commision on every turf booking from our app.
 
 ## 🛠Project Setup
+##### 👉 Requirements:
 
->Include your project setup basics here. Steps for how someone else can setup your project on their machine. Add any relevant details as well.
+Any Operating System (ie. MacOS X, Linux, Windows)
+
+Any IDE with Flutter SDK installed (ie. IntelliJ, Android Studio, VSCode etc)
+
+A little knowledge of Dart and Flutter.
+
+1 GB storage
+
+##### 💻 Setup:
+
+Clone this github repository into your local device.
+
+Open the pothole folder in your IDE with Flutter SDK installed (ie. IntelliJ, Android Studio, VSCode etc).
+
+Install all the packages required. Run flutter pub get from the terminal to install the required packages.
+
+Now in order to run the file for debugging you need to add your SHA-1 in our firebase as we have added user authentication in using google account.
+
+If you want to collaborate please contact the undersigned.
 
 ## 💻Usage
+👤 
 
->Steps to run your project once its setup. If you have an app or website, list how the user can go about using it.
+User first has to login to our app using his/her Gmail account.
+
+After logging in to our app, the user is directed to the homepage of our app. Here users can navigate to the options provided.
+
+Home:
+In this, the user can view their joined and created activities and also enter a particular group chat.
+
+Create:
+In this, the user can create an activity to find players as per their requirement.
+
+Meet:
+In this, the user can find players as per their requirement.
+
+Profile:
+In this, the user can view and edit their profile as per the need.
+
+Turf:
+In this, the user can find turfs as per their requirement.
+
 
 ## 👨‍💻Team Members
 
