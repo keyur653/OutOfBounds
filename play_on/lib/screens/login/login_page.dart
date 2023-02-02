@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:play_on/controller/user_data.dart';
-import 'package:play_on/login/register_page.dart';
-import 'package:play_on/login/reset_screen.dart';
+import 'package:play_on/screens/login/register_page.dart';
+import 'package:play_on/screens/login/reset_screen.dart';
 
-import '../controller/process_data.dart';
+import '../../controller/process_data.dart';
 
 class LoginDemo extends StatefulWidget {
   static String id = "/login";
@@ -45,8 +45,10 @@ class LoginDemoState extends State<LoginDemo> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.email_outlined),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       labelText: 'Email ID',
                       hintText: 'Enter registered email id'),
                   onChanged: (value) {
@@ -60,8 +62,10 @@ class LoginDemoState extends State<LoginDemo> {
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
                   obscureText: true,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.password),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       labelText: 'Password',
                       hintText: 'Enter Your Password'),
                   onChanged: (value) {
@@ -74,18 +78,27 @@ class LoginDemoState extends State<LoginDemo> {
                   //TODO FORGOT PASSWORD SCREEN GOES HERE
                   Navigator.pushNamed(context, ResetScreen.id);
                 },
-                child: const Text(
-                  'Forgot Password?',
-                  style: TextStyle(color: Colors.blue, fontSize: 15),
+                child: Container(
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(color: Colors.blue, fontSize: 15),
+                  ),
                 ),
               ),
               Container(
                 height: 50,
                 width: 250,
                 decoration: BoxDecoration(
-                    color: Colors.blue,
+                    // color: Colors.blue,
                     borderRadius: BorderRadius.circular(20)),
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Colors.lightBlueAccent),
+                      shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ))),
                   onPressed: () async {
                     try {
                       final user = await _auth.signInWithEmailAndPassword(

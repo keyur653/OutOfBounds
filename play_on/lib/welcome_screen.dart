@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:play_on/login/login_page.dart';
-import 'package:play_on/login/register_page.dart';
+import 'package:play_on/screens/login/login_page.dart';
+import 'package:play_on/screens/login/register_page.dart';
+import 'package:play_on/widget/picker.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'widget/button.dart';

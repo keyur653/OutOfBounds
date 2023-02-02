@@ -26,16 +26,16 @@ class _SportlistState extends State<Sportlist> {
   DatabaseReference obj = DatabaseReference();
 
   final Map<String, IconData> _sportIcons = {
-    "soccer": Icons.sports_soccer_outlined,
-    "basketball": Icons.sports_basketball_outlined,
-    "tennis": Icons.sports_tennis_outlined,
-    "cricket": Icons.sports_cricket_outlined,
-    "football": Icons.sports_football_outlined,
-    "volleyball": Icons.sports_volleyball_outlined,
-    "hockey": Icons.sports_hockey_outlined,
-    "handball": Icons.sports_handball_outlined,
-    "kabaddi": Icons.sports_kabaddi_outlined,
-    "baseball": Icons.sports_baseball_outlined
+    "Football": Icons.sports_soccer_outlined,
+    "Basketball": Icons.sports_basketball_outlined,
+    "Tennis": Icons.sports_tennis_outlined,
+    "Cricket": Icons.sports_cricket_outlined,
+    "Rugby": Icons.sports_football_outlined,
+    "Volleyball": Icons.sports_volleyball_outlined,
+    "Hockey": Icons.sports_hockey_outlined,
+    "Handball": Icons.sports_handball_outlined,
+    "Kabaddi": Icons.sports_kabaddi_outlined,
+    "Baseball": Icons.sports_baseball_outlined
     // Add more sports
   };
 
@@ -98,7 +98,8 @@ class _SportlistState extends State<Sportlist> {
                     onPressed: (() {
                       update();
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => ProcessData(widget.role)),
+                        MaterialPageRoute(
+                            builder: (_) => ProcessData(widget.role)),
                       );
                     }),
                     child: const Text("done"))
