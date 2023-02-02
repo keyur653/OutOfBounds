@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:play_on/login/registration_page.dart';
+import 'package:play_on/screens/login/registration_page.dart';
+import 'package:play_on/widget/button.dart';
 
 class RegisterDemo extends StatefulWidget {
   static String id = "/Register";
@@ -46,8 +47,10 @@ class RegisterDemoState extends State<RegisterDemo> {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.email_outlined),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       labelText: 'Email ID',
                       hintText: 'Enter registered email id'),
                   onChanged: (value) {
@@ -61,8 +64,10 @@ class RegisterDemoState extends State<RegisterDemo> {
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
                   obscureText: true,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.password),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       labelText: 'Password',
                       hintText: 'Enter Your Password'),
                   onChanged: (value) {
@@ -77,9 +82,16 @@ class RegisterDemoState extends State<RegisterDemo> {
                 height: 50,
                 width: 250,
                 decoration: BoxDecoration(
-                    color: Colors.blue,
+                    // color: Colors.blue,
                     borderRadius: BorderRadius.circular(20)),
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.blueAccent),
+                      shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ))),
                   onPressed: () async {
                     setState(() {
                       isspinner = true;
@@ -99,9 +111,10 @@ class RegisterDemoState extends State<RegisterDemo> {
                       isspinner = false;
                     });
                   },
-                  child: const Text(
-                    'Sign In',
-                    style: TextStyle(color: Colors.white, fontSize: 25),
+                  // style: ButtonStyle(shape: ),
+                  child: Text(
+                    'Register',
+                    style: TextStyle(color: Colors.black, fontSize: 25),
                   ),
                 ),
               ),
@@ -133,7 +146,7 @@ class RegisterDemoState extends State<RegisterDemo> {
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
     print(userCredential.user?.displayName);
-    if(userCredential!=null){
+    if (userCredential != null) {
       Navigator.pushNamed(context, RegistrationDemo.id);
     }
   }

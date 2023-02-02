@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:play_on/controller/user_data.dart';
 import 'package:play_on/db%20Model/db_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:play_on/login/sport_list.dart';
+import 'package:play_on/screens/login/sport_list.dart';
 import 'package:play_on/db%20Model/database_service.dart';
-
 
 class RegistrationDemo extends StatefulWidget {
   static String id = "/registration";
@@ -53,13 +52,12 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
       'Gender': gender,
       'Sports': ["cricket", "kabaddi"],
       'Role': role!.trim(),
-      'Profileurl':"hi"
+      'Profileurl': "hi"
     });
 
-    await DatabaseService(uid: loggedInUser.uid).savingUserData(name.toString(), loggedInUser.email.toString());
+    await DatabaseService(uid: loggedInUser.uid)
+        .savingUserData(name.toString(), loggedInUser.email.toString());
   }
-
-
 
   Widget build(BuildContext context) {
     return Container(
@@ -85,8 +83,10 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.person),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       labelText: 'Name',
                       hintText: "What's your name?"),
                   onChanged: (value) {
@@ -99,8 +99,10 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.phone_android),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       labelText: 'Mobile No.',
                       hintText: 'Enter your Mobile No.'),
                   onChanged: (value) {
@@ -113,8 +115,10 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.area_chart),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       labelText: 'Area',
                       hintText: 'Enter your Area or Pincode'),
                   onChanged: (value) {
@@ -210,9 +214,16 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                   height: 50,
                   width: 250,
                   decoration: BoxDecoration(
-                      color: Colors.blue,
+                      // color: Colors.blue,
                       borderRadius: BorderRadius.circular(20)),
                   child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.indigo),
+                        shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ))),
                     onPressed: (() {
                       update();
                       Navigator.of(context).push(
