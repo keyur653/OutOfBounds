@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:play_on/screens/login/reset_screen.dart';
 import 'package:play_on/welcome_screen.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -44,7 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 const Icon(
                   Icons.person,
-                  color: Colors.teal,
+                  color: Colors.green,
                 ),
                 const SizedBox(
                   width: 8,
@@ -62,11 +63,13 @@ class _SettingsPageState extends State<SettingsPage> {
             const SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow(context, "Change password"),
-            buildAccountOptionRow(context, "Content settings"),
-            buildAccountOptionRow(context, "Social"),
-            buildAccountOptionRow(context, "Language"),
-            buildAccountOptionRow(context, "Privacy and security"),
+            buildAccountOptionRow(context, "Change password", (() {
+              Navigator.pushNamed(context, ResetScreen.id);
+            })),
+            buildAccountOptionRow(context, "Content settings", (() {})),
+            buildAccountOptionRow(context, "Social", (() {})),
+            buildAccountOptionRow(context, "Language", (() {})),
+            buildAccountOptionRow(context, "Privacy and security", (() {})),
             const SizedBox(
               height: 40,
             ),
@@ -74,7 +77,7 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 const Icon(
                   Icons.volume_up_outlined,
-                  color: Colors.teal,
+                  color: Colors.green,
                 ),
                 const SizedBox(
                   width: 8,
@@ -103,11 +106,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 style: ButtonStyle(
                     padding: MaterialStatePropertyAll(
                         EdgeInsets.symmetric(horizontal: 40)),
-                    backgroundColor: MaterialStatePropertyAll(Colors.teal),
+                    backgroundColor: MaterialStatePropertyAll(Colors.green),
                     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)))),
                 onPressed: () async {
-                  await GoogleSignIn().signOut();
+                  // await GoogleSignIn().signOut();
                   FirebaseAuth.instance.signOut();
                   Navigator.pushNamed(context, WelcomeScreen.id);
                 },
@@ -143,32 +146,10 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  GestureDetector buildAccountOptionRow(BuildContext context, String title) {
+  GestureDetector buildAccountOptionRow(
+      BuildContext context, String title, void Function() ontap) {
     return GestureDetector(
-      onTap: () {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(title),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text("Option 1"),
-                    const Text("Option 2"),
-                    const Text("Option 3"),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text("Close")),
-                ],
-              );
-            });
-      },
+      onTap: ontap,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(

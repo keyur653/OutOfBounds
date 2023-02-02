@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:play_on/controller/user_data.dart';
+import 'package:play_on/db%20Model/db_model.dart';
 import 'package:play_on/screens/profile/edit_profile.dart';
 
 import '../../db Model/database_service.dart';
@@ -26,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(0, 77, 77, 10.0),
+        backgroundColor: Colors.green,
         leading:
             IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
         title: const Text("Profile"),
@@ -54,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               CircleAvatar(
                 radius: 50,
                 backgroundImage: (widget.details[6] == "hi")
-                    ? AssetImage('images/profile_image.jpg')
+                    ? const AssetImage('images/profile_image.jpg')
                     : NetworkImage(widget.details[6]) as ImageProvider,
               ),
               Text(
@@ -66,9 +67,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   fontFamily: "Pacifico",
                 ),
               ),
-              const Text(
-                "Activities: 0",
-                style: TextStyle(
+              Text(
+                "Activities: $act",
+                style: const TextStyle(
                     fontSize: 30,
                     color: Colors.black,
                     letterSpacing: 2.5,
@@ -109,7 +110,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   icon: Icons.email,
                   onPressed: () async {}),
               InfoCard(
-                text: "${widget.sportdetails[0]} , ${widget.sportdetails[1]},${widget.sportdetails[2]},${widget.sportdetails[3]}",
+                text:
+                    "${widget.sportdetails[0]} , ${widget.sportdetails[1]},${widget.sportdetails[2]},${widget.sportdetails[3]}",
                 icon: Icons.sports,
                 onPressed: () {},
               )

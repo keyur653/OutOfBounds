@@ -73,7 +73,7 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 0.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: Container(
                   width: 200,
                   height: 15,
@@ -99,7 +99,10 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextField(
+                  maxLength: 10,
+                  keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
+                      counterText: "",
                       icon: Icon(Icons.phone_android),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30)),
@@ -122,7 +125,7 @@ class _RegistrationDemoState extends State<RegistrationDemo> {
                       labelText: 'Area',
                       hintText: 'Enter your Area or Pincode'),
                   onChanged: (value) {
-                    area = value;
+                    area = value[0].toUpperCase() + value.substring(1);
                   },
                 ),
               ),

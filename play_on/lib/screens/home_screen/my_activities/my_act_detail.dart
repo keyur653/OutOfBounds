@@ -32,6 +32,7 @@ class MyActivityDetail extends StatefulWidget {
 
 class _MyActivityDetailState extends State<MyActivityDetail> {
   TextEditingController _controllanswer = TextEditingController();
+  String groupid = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -46,6 +47,10 @@ class _MyActivityDetailState extends State<MyActivityDetail> {
     print('object');
   }
 
+  String getId(String res) {
+    return res.substring(0, res.indexOf("_"));
+  }
+
   Future updateAnswer() async {
     FirebaseFirestore.instance
         .collection('User')
@@ -55,6 +60,7 @@ class _MyActivityDetailState extends State<MyActivityDetail> {
         .update({
       'QAnswers': widget.playeract.qanswer,
     });
+
 
     FirebaseFirestore.instance
         .collection('User')
@@ -107,10 +113,11 @@ class _MyActivityDetailState extends State<MyActivityDetail> {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
+                  groupid = getId(widget.playeract.sgroup!);
                   nextScreen(
                       context,
                       ChatPage(
-                        groupId: widget.playeract.sgroup!,
+                        groupId: groupid,
                         groupName: widget.playeract.sport!,
                         userName: widget.details[0],
                       ));

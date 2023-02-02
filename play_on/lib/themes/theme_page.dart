@@ -11,11 +11,11 @@ class Mythemes {
         canvasColor: creamcolor,
         buttonColor: darkBluishColor,
         appBarTheme: AppBarTheme(
-            backgroundColor: creamcolor,
+            backgroundColor: Colors.teal,
             elevation: 0.0,
             titleTextStyle: TextStyle(color: Colors.black, fontSize: 22),
             iconTheme: IconThemeData(color: Colors.black)),
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.green,
       );
 
   static Color creamcolor = Color(0xfff5f5f5);

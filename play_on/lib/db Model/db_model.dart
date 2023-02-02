@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 List<String> detaillist = [];
+int act = 1;
 
 class PlayerProfile {
   String? name, mbnumber, role, gender, area, email, sport;
@@ -33,7 +34,7 @@ class FindPlayer {
       sgroup,
       email;
 
-  List queries, qsender, senderurl, qanswer, playersn, playersp,jplayer;
+  List queries, qsender, senderurl, qanswer, playersn, playersp, jplayer;
 
   FindPlayer(
       this.area,
