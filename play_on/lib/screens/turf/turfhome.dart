@@ -128,7 +128,7 @@ class _FindTurfState extends State<FindTurf> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
                   child: ListView.separated(
-                    itemCount: 10,
+                    itemCount: 1,
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {

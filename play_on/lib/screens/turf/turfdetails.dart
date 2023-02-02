@@ -30,12 +30,12 @@ class _TurfDetailState extends State<TurfDetail> {
           .px(8)
           .wFull(context),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        title: Text('Turf Detail',style: TextStyle(color: Colors.white),),
+        backgroundColor: Color.fromRGBO(0, 77, 77, 10.0),
         elevation: 0.0,
         leading: BackButton(
           color: Colors.green,
-          onPressed: () {
-            Navigator.pop(context);
+          onPressed: () {            Navigator.pop(context);
           },
         ),
         // title: Column(
@@ -67,7 +67,7 @@ class _TurfDetailState extends State<TurfDetail> {
             SizedBox(
               height: 200, // card height
               child: PageView.builder(
-                itemCount: 10,
+                itemCount: 2,
                 controller: PageController(viewportFraction: 0.7),
                 onPageChanged: (int index) => setState(() => _index = index),
                 itemBuilder: (_, i) {
@@ -77,12 +77,10 @@ class _TurfDetailState extends State<TurfDetail> {
                       elevation: 6,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      child: Center(
-                        child: Text(
-                          "Image ${i + 1}",
-                          style: TextStyle(fontSize: 32),
-                        ),
-                      ),
+                      child: Image.asset(
+                                        'assets/usf.jpg',
+                                        fit: BoxFit.fill,
+                                      ),
                     ),
                   );
                 },
