@@ -10,7 +10,7 @@ import firebase_auth
 import firebase_core
 import firebase_storage
 import modal_progress_hud_nsn
-import path_provider_macos
+import path_provider_foundation
 import shared_preferences_foundation
 import url_launcher_macos
 

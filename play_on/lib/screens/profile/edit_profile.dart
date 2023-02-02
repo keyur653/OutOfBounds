@@ -97,7 +97,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
       setState(() {
         profileUrl = url.toString();
-        update();
       });
 
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -282,6 +281,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ElevatedButton(
                     onPressed: () {
                       upload(context);
+                      update();
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (BuildContext context) =>
                               ProcessData(_controllerRole.text)));
