@@ -37,7 +37,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   TextEditingController _controllerSports = TextEditingController();
   final picker = ImagePicker();
   File? _image;
-  String? profileUrl;
+  String profileUrl = "hi";
 
   List userSport = [];
   bool isselected = false;
@@ -49,7 +49,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     _controllerArea.text = "${widget.details[4]}";
     _controllerRole.text = "${widget.details[2]}";
     _controllerSports.text =
-        "${widget.sportdetails[0]},${widget.sportdetails[1]}";
+        "${widget.sportdetails[0]} , ${widget.sportdetails[1]},${widget.sportdetails[2]},${widget.sportdetails[3]}";
     print(_controllerSports);
     super.initState();
   }
@@ -60,7 +60,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
         .then((value) {
       if (value is List) {
         setState(() {
-          _controllerSports.text = "${value[0]},${value[1]}";
+          _controllerSports.text =
+              "${value[0]},${value[1]},${value[2]},${value[3]}";
           userSport = value;
           isselected = true;
         });

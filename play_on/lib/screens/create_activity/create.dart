@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:play_on/db%20Model/database_service.dart';
+import 'package:play_on/db%20Model/db_model.dart';
 import 'package:play_on/screens/create_activity/area.dart';
 import 'package:play_on/screens/create_activity/select_sport.dart';
 import 'package:play_on/screens/create_activity/time.dart';
@@ -37,8 +38,7 @@ class _CreateState extends State<Create> {
   final CollectionReference groupCollection =
       FirebaseFirestore.instance.collection("groups");
   int i = 1;
-  TextEditingController _controllerCost =
-      TextEditingController(text: "No Cost");
+  TextEditingController _controllerCost = TextEditingController(text: "0");
   TextEditingController _controllerTplayer = TextEditingController(text: "0");
   CategoryType categoryType = CategoryType.public;
   bool isSwitched = false;
@@ -174,7 +174,7 @@ class _CreateState extends State<Create> {
       'Activities': i,
       'PCount': 1,
       'Sgroup': groupid,
-      'JPlayers': [],
+      'JPlayers': [loggedInUser.uid],
       'PlayersN': [],
       'PlayersP': [],
       'Queries': [],
@@ -203,7 +203,7 @@ class _CreateState extends State<Create> {
       'Activities': i,
       'PCount': 1,
       'Sgroup': groupid,
-      'JPlayers': [],
+      'JPlayers': [loggedInUser.uid],
       'PlayersN': [],
       'PlayersP': [],
       'Queries': [],
@@ -222,6 +222,7 @@ class _CreateState extends State<Create> {
               onPressed: (() async {
                 // setState(() {
                 i++;
+                act = i;
                 // });
                 await update();
                 clear();

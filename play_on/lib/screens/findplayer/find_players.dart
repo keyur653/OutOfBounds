@@ -58,7 +58,7 @@ class _FindPlayerpageState extends State<FindPlayerpage> {
       appBar: AppBar(
         title: Text("Find Player"),
         elevation: 0.0,
-        backgroundColor: Color.fromRGBO(0, 77, 77, 10.0),
+        backgroundColor: Colors.green,
         leading: TextButton(
             onPressed: (() {}),
             child: Icon(

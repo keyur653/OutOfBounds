@@ -78,7 +78,7 @@ class _ActivityDetailState extends State<ActivityDetail> {
     // var arrCard;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(0, 77, 77, 10.0),
+        backgroundColor: Colors.green,
         leading: BackButton(
           onPressed: () {
             Navigator.pop(context);
@@ -119,7 +119,6 @@ class _ActivityDetailState extends State<ActivityDetail> {
                           showSnackbar(
                               context, Colors.green, "you already joined")
                         };
-                  setState(() {});
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.green)),
