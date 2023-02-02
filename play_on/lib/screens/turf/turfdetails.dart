@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // import 'find_players.dart';
 class TurfDetail extends StatefulWidget {
-  static String id = "/Turf Detail";
+  
 
   TurfDetail({super.key});
-
+  static const String id = '/turfdetails';
   @override
   State<TurfDetail> createState() => _TurfDetailState();
 }
