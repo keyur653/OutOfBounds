@@ -135,11 +135,3 @@ In this, the user can find turfs as per their requirement.
 
 - [Nirbhay Hanjura](https://github.com/botnirbhay): hanjuranirbhay@gmail.com
 - [Tushar Mali](https://github.com/7-USH): tush1245@gmail.com
-
-## 📱Screenshots
-Add a few screenshots for parts of the project completed till now to give the viewer a quick idea of what your project looks like. After all, a picture speaks a thousand words.
-
-You'll have to link the screenshots from your drive folder here.
-
-![Screenshot alt text](https://i.redd.it/qp8ocyzvyj8a1.jpg "Here is a screenshot")
-
