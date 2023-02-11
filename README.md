@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://github.com/keyur653/OutOfBounds">
-    <img src="https://en.bloggif.com/tmp/460426d8723c9428b283c46d5f1363c5/text.gif?1675343247" width="500" height="166">
+    <img src="https://res.cloudinary.com/dn6vz8exv/image/upload/v1665664791/inh_zzefoy.jpg" alt="CoC Inheritance 2022" width="500" height="166">
   </a>
   <br>
 </h1>
