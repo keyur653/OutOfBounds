@@ -258,7 +258,7 @@ class _MyActivityDetailState extends State<MyActivityDetail> {
                               ),
                             ),
                             ListView.separated(
-                                shrinkWrap: true,
+                                 shrinkWrap: true,
                                 itemBuilder: ((context, index) {
                                   return Column(
                                     children: [
