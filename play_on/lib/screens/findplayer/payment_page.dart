@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:play_on/controller/user_data.dart';
@@ -73,7 +72,7 @@ class _PaymentPageState extends State<PaymentPage> {
         .doc("${widget.playeract.activities}${widget.playeract.email}")
         .update({
       'PlayersN': widget.playeract.playersn,
-      'JPlayers':widget.playeract.jplayer,
+      'JPlayers': widget.playeract.jplayer,
       'PlayersP': widget.playeract.playersp,
       'PCount': widget.playeract.pcount + 1 + count,
     });
@@ -85,7 +84,7 @@ class _PaymentPageState extends State<PaymentPage> {
         .doc("${widget.playeract.activities}${widget.playeract.area}")
         .update({
       'PlayersN': widget.playeract.playersn,
-      'JPlayers':widget.playeract.jplayer,
+      'JPlayers': widget.playeract.jplayer,
       'PlayersP': widget.playeract.playersp,
       'PCount': widget.playeract.pcount + 1 + count,
     });
@@ -110,7 +109,7 @@ class _PaymentPageState extends State<PaymentPage> {
       'Activities': widget.playeract.activities,
       'Sgroup': widget.playeract.sgroup,
       'PCount': widget.playeract.pcount + 1 + count,
-      'JPlayers':widget.playeract.jplayer,
+      'JPlayers': widget.playeract.jplayer,
       'PlayersN': widget.playeract.playersn,
       'PlayersP': widget.playeract.playersp,
       'Queries': widget.playeract.queries,
@@ -157,7 +156,13 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
-            child: "AMOUNT: INR 100".text.bold.xl2.green700.make().py32(),
+            child: "AMOUNT: INR ${widget.playeract.cost}"
+                .text
+                .bold
+                .xl2
+                .green700
+                .make()
+                .py32(),
           ),
           Card(
             elevation: 10,

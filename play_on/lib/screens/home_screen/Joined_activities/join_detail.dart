@@ -28,6 +28,7 @@ class JoinActivityDetail extends StatefulWidget {
 class _JoinActivityDetailState extends State<JoinActivityDetail> {
   final TextEditingController _controllquery = TextEditingController();
   bool isjoined = false;
+  String groupid = "";
   // List querlist = [];
   // List senderlist = [];
   @override
@@ -106,10 +107,11 @@ class _JoinActivityDetailState extends State<JoinActivityDetail> {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
+                  groupid = getId(widget.playeract.sgroup!);
                   nextScreen(
                       context,
                       ChatPage(
-                        groupId: getId(widget.playeract.sgroup!),
+                        groupId: groupid,
                         groupName: widget.playeract.sport!,
                         userName: widget.details[0],
                       ));

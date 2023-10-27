@@ -49,8 +49,12 @@ class _EditSportState extends State<EditSport> {
               Icon(
                 _sportIcons[Sportdata[i].name],
                 size: 30,
+                color: Colors.black,
               ),
-              Text("${Sportdata[i].name}")
+              Text(
+                "${Sportdata[i].name}",
+                style: TextStyle(color: Colors.black),
+              )
             ],
           )));
     }

@@ -99,7 +99,7 @@ class _UserBottomNavState extends State<UserBottomNav> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_pin_outlined ),
+              icon: Icon(Icons.person_pin_outlined),
               label: 'Meet',
             ),
             BottomNavigationBarItem(

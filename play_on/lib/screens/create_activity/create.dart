@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:play_on/db%20Model/database_service.dart';
+import 'package:play_on/db%20Model/db_model.dart';
 import 'package:play_on/screens/create_activity/area.dart';
 import 'package:play_on/screens/create_activity/select_sport.dart';
 import 'package:play_on/screens/create_activity/time.dart';
@@ -37,8 +38,7 @@ class _CreateState extends State<Create> {
   final CollectionReference groupCollection =
       FirebaseFirestore.instance.collection("groups");
   int i = 1;
-  TextEditingController _controllerCost =
-      TextEditingController(text: "No Cost");
+  TextEditingController _controllerCost = TextEditingController(text: "0");
   TextEditingController _controllerTplayer = TextEditingController(text: "0");
   CategoryType categoryType = CategoryType.public;
   bool isSwitched = false;
@@ -155,12 +155,13 @@ class _CreateState extends State<Create> {
 
     String groupid = "${groupDocumentReference.id}_$sport";
 
-    FirebaseFirestore.instance
+    var ref1 = FirebaseFirestore.instance
         .collection('User')
         .doc(area)
         .collection(sport)
-        .doc("$i${loggedInUser.email}")
-        .set({
+        .doc("$i${loggedInUser.email}");
+
+    await ref1.set({
       'Name': widget.details[0],
       'Sport': sport,
       'Area': area,
@@ -173,7 +174,7 @@ class _CreateState extends State<Create> {
       'Activities': i,
       'PCount': 1,
       'Sgroup': groupid,
-      'JPlayers':[],
+      'JPlayers': [loggedInUser.uid],
       'PlayersN': [],
       'PlayersP': [],
       'Queries': [],
@@ -183,12 +184,13 @@ class _CreateState extends State<Create> {
       'Email': loggedInUser.email
     });
 
-    FirebaseFirestore.instance
+    var ref2 = FirebaseFirestore.instance
         .collection('User')
         .doc("myactivity")
         .collection("${loggedInUser.email}")
-        .doc("$i$area")
-        .set({
+        .doc("$i$area");
+
+    await ref2.set({
       'Name': widget.details[0],
       'Sport': sport,
       'Area': area,
@@ -201,7 +203,7 @@ class _CreateState extends State<Create> {
       'Activities': i,
       'PCount': 1,
       'Sgroup': groupid,
-      'JPlayers':[],
+      'JPlayers': [loggedInUser.uid],
       'PlayersN': [],
       'PlayersP': [],
       'Queries': [],
@@ -220,6 +222,7 @@ class _CreateState extends State<Create> {
               onPressed: (() async {
                 // setState(() {
                 i++;
+                act = i;
                 // });
                 await update();
                 clear();
