@@ -9,7 +9,6 @@ class Mythemes {
         secondaryHeaderColor: darkBluishColor,
         cardColor: Vx.white,
         canvasColor: creamcolor,
-        buttonColor: darkBluishColor,
         appBarTheme: AppBarTheme(
             backgroundColor: creamcolor,
             elevation: 0.0,
@@ -29,7 +28,6 @@ class Mythemes {
         secondaryHeaderColor: Colors.white,
         cardColor: Vx.black,
         canvasColor: darkcreamcolr,
-        buttonColor: Vx.indigo200,
         appBarTheme: AppBarTheme(
             backgroundColor: darkcreamcolr,
             elevation: 0.0,

@@ -48,8 +48,10 @@ class _SportlistState extends State<Sportlist> {
           child: Column(
             children: [
               Icon(
+                
                 _sportIcons[Sportdata[i].name],
                 size: 30,
+                color: Colors.black,
               ),
               Text("${Sportdata[i].name}")
             ],

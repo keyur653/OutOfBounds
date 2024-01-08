@@ -27,6 +27,7 @@ class _DesignState extends State<Design> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            
             Image(
               color: Colors.black54,
               height: 60,

@@ -21,9 +21,9 @@ class _SelectSportState extends State<SelectSport> {
   DatabaseReference obj = DatabaseReference();
 
   final Map<String, IconData> _sportIcons = {
-    "Football": Icons.sports_soccer_outlined,
-    "Basketball": Icons.sports_basketball_outlined,
-    "Tennis": Icons.sports_tennis_outlined,
+    "Running": Icons.sports,
+    "Cycling": Icons.motorcycle_rounded,
+    "PowerLift": Icons.sports_tennis_outlined,
     "Cricket": Icons.sports_cricket_outlined,
     "Rugby": Icons.sports_football_outlined,
     "Volleyball": Icons.sports_volleyball_outlined,

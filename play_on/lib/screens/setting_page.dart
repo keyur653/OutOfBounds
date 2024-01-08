@@ -107,7 +107,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)))),
                 onPressed: () async {
-                  await GoogleSignIn().signOut();
+                  // await GoogleSignIn().signOut();
                   FirebaseAuth.instance.signOut();
                   Navigator.pushNamed(context, WelcomeScreen.id);
                 },

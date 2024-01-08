@@ -47,6 +47,7 @@ class _ProcessDataState extends State<ProcessData> {
                 )),
       );
       detaillist = details;
+      sportDetailList = sportdetails;
     });
     return details;
   }

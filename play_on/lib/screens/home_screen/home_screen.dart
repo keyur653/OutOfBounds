@@ -1,9 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:play_on/screens/home_screen/Joined_activities/join_act.dart';
 import 'package:play_on/screens/home_screen/design.dart';
 import 'package:play_on/screens/home_screen/group/pages/home_page.dart';
+import 'package:play_on/screens/home_screen/mental_health/quiz/blog.dart';
+import 'package:play_on/screens/home_screen/mental_health/quiz/quiz.dart';
+import 'package:play_on/screens/home_screen/mental_health/quiz/start_quiz_screen.dart';
 import 'package:play_on/screens/home_screen/my_activities/my_activity.dart';
+import 'package:play_on/screens/home_screen/mental_health/workout/workout_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = "/home";
@@ -38,6 +41,22 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: ((context) => GroupHomePage(details: widget.details))));
   }
 
+  void mental_health() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: ((context) => StartQuiz())));
+  }
+
+  void blog() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: ((context) => Blog2())));
+  }
+
+  void workout() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: ((context) => WorkoutScreen())));
+  }
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView.count(
@@ -45,7 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Design(text: "My activity", ontap: myactivity),
           Design(text: "Joined Activities", ontap: joinactivity),
-          Design(text: "Groups", ontap: groups)
+          Design(text: "Groups", ontap: groups),
+          Design(text: "mental_health", ontap: mental_health),
+          Design(text: "blog", ontap: blog),
+          Design(text: "workout", ontap: workout),
+
         ],
       ),
     );
